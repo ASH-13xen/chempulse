@@ -37,7 +37,7 @@ export function TrendBadge({ dir, compact = false }: { dir: "up" | "down" | "fla
 export function FreqBadge({ frequency }: { frequency: "daily" | "monthly" }) {
   return (
     <span
-      className={`inline-flex items-center rounded-full border px-1.5 py-px text-[10px] font-semibold uppercase tracking-wide ${
+      className={`inline-flex items-center rounded-full border px-1.5 py-px text-[0.625rem] font-semibold uppercase tracking-wide ${
         frequency === "daily" ? "border-[color-mix(in_oklab,var(--accent)_35%,transparent)] text-accent-ink" : "border-line text-muted"
       }`}
       title={frequency === "daily" ? "Daily prices" : "Monthly data (India imports)"}

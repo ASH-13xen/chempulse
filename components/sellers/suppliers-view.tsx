@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDown, ArrowUp, BadgeCheck, Download, Search, Star } from "lucide-react";
+import { ArrowDown, ArrowUp, BadgeCheck, Download, Star } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { categories, categoryById } from "@/lib/catalog";
@@ -17,6 +17,7 @@ import { CountUp, Reveal } from "../ui/motion";
 import { Segmented } from "../ui/segmented";
 import { StarButton } from "../ui/row-bits";
 import { SOURCE_LABEL, SOURCE_SLOT } from "./seller-table";
+import { SearchField } from "@/components/ui/search-field";
 
 type SortKey = "name" | "listings" | "products" | "memberYears" | "lastSeen";
 
@@ -29,6 +30,7 @@ export function SuppliersView({ board }: { board: SellerBoard }) {
   const [src, setSrc] = useState("all");
   const [gst, setGst] = useState(false);
   const [sort, setSort] = useState<{ k: SortKey; dir: 1 | -1 }>({ k: "listings", dir: -1 });
+  const [phoneLimit, setPhoneLimit] = useState(40);
   const [limit, setLimit] = useState(150);
 
   const list = useMemo(() => {
@@ -118,10 +120,7 @@ export function SuppliersView({ board }: { board: SellerBoard }) {
 
       <div data-reveal className="card space-y-3 p-4">
         <div className="flex flex-wrap items-center gap-2">
-          <div className="relative w-full sm:w-72">
-            <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted" />
-            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search company or city…" className="input pl-9" aria-label="Search suppliers" />
-          </div>
+          <SearchField value={q} onValueChange={setQ} placeholder="Search company or city…" aria-label="Search suppliers" wrapperClassName="w-full sm:w-72" />
           <select value={region} onChange={(e) => setRegion(e.target.value)} className="input h-9 w-auto" aria-label="Region">
             <option value="all">All regions</option>
             {board.regions.map((r) => (
@@ -172,16 +171,90 @@ export function SuppliersView({ board }: { board: SellerBoard }) {
       </div>
 
       <div data-reveal className="card overflow-hidden">
-        <div className="flex items-center justify-between px-4 py-2.5 text-[13px] text-ink-2">
+        <div className="flex items-center justify-between gap-2 px-4 py-2.5 text-[0.8125rem] text-ink-2">
           <span>
             <b className="text-ink">{fmtNum(list.length, { digits: 0 })}</b> companies
           </span>
+          <select
+            className="input ml-auto h-9! w-auto sm:hidden"
+            aria-label="Sort companies"
+            value={`${sort.k}:${sort.dir}`}
+            onChange={(e) => {
+              const [k, d] = e.target.value.split(":");
+              setSort({ k: k as SortKey, dir: Number(d) as 1 | -1 });
+            }}
+          >
+            <option value="listings:-1">Most listings</option>
+            <option value="products:-1">Most products</option>
+            <option value="memberYears:-1">Longest on site</option>
+            <option value="lastSeen:-1">Recently seen</option>
+            <option value="name:1">Name A–Z</option>
+          </select>
           <InfoTip title="Supplier list">
             <p>Click a company to see every product it lists, its prices in ₹/kg and how they compare with other sellers.</p>
             <p>“Verified” means GST-verified on IndiaMART or a verified badge on TradeIndia.</p>
           </InfoTip>
         </div>
-        <div className="max-h-[calc(100vh-240px)] overflow-auto">
+        {/* Phones: one card per company */}
+        <ul className="divide-y divide-[var(--line)] border-t border-line sm:hidden">
+          {list.slice(0, phoneLimit).map((c) => (
+            <li key={c.key} className="px-4 py-3">
+              <div className="flex items-start gap-2">
+                <div className="-ml-1.5 shrink-0">
+                  <StarButton id={c.key} name={c.name} kind="supplier" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <Link href={`/suppliers/${c.key}`} className="inline-flex items-center gap-1.5 font-medium text-ink hover:text-accent-ink">
+                    {c.name}
+                    {c.gstVerified && <BadgeCheck className="size-3.5 shrink-0 text-accent-ink" aria-label="Verified" />}
+                  </Link>
+                  <div className="mt-0.5 text-xs text-ink-2">
+                    {c.regions.join(", ")}
+                    {" · "}
+                    {[c.types.manufacturer && "Manufacturer", (c.types.trader || c.types.distributor) && "Trader", c.types.exporter && "Exporter"].filter(Boolean).join(" · ") || "Type unknown"}
+                  </div>
+                  <div className="mt-1.5 flex flex-wrap gap-1">
+                    {c.products.slice(0, 3).map((p) => (
+                      <Link key={p} href={`/products/${p}`} className="inline-flex items-center gap-1 rounded bg-surface-2 px-1.5 py-px text-[0.6875rem] text-ink-2">
+                        <CategoryDot slot={categoryById[productById[p]?.category ?? "solvents"]?.slot ?? 1} className="size-1.5!" />
+                        {productById[p]?.name ?? p}
+                      </Link>
+                    ))}
+                    {c.products.length > 3 && <span className="text-[0.6875rem] text-muted">+{c.products.length - 3} more</span>}
+                  </div>
+                  <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.6875rem] text-muted">
+                    <span>
+                      {c.listings} listing{c.listings === 1 ? "" : "s"}
+                    </span>
+                    {c.memberYears ? <span>{c.memberYears} yr on site</span> : null}
+                    {c.rating ? (
+                      <span className="inline-flex items-center gap-0.5">
+                        <Star className="size-3 fill-[var(--warn)] text-[var(--warn)]" />
+                        {c.rating.toFixed(1)}
+                      </span>
+                    ) : null}
+                    <span className="inline-flex items-center gap-1">
+                      {c.sources.map((src) => (
+                        <i key={src} title={SOURCE_LABEL[src]} className="size-2 rounded-full" style={{ background: `var(--s${SOURCE_SLOT[src]})` }} />
+                      ))}
+                    </span>
+                    <span>seen {fmtDate(c.lastSeen.slice(0, 10))}</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+          ))}
+          {list.length > phoneLimit && (
+            <li className="p-4">
+              <button type="button" className="btn w-full justify-center" onClick={() => setPhoneLimit((n) => n + 40)}>
+                Show 40 more ({fmtNum(list.length - phoneLimit, { digits: 0 })} left)
+              </button>
+            </li>
+          )}
+          {!list.length && <li className="p-12 text-center text-sm text-ink-2">No companies match these filters.</li>}
+        </ul>
+
+        <div className="hidden max-h-[calc(100vh-240px)] overflow-auto sm:block">
           <table className="tnum w-full border-separate border-spacing-0 text-sm">
             <thead>
               <tr>
@@ -216,12 +289,12 @@ export function SuppliersView({ board }: { board: SellerBoard }) {
                   <td className="max-w-[320px] border-b border-line/60 px-3 py-2.5">
                     <span className="flex flex-wrap gap-1">
                       {c.products.slice(0, 4).map((p) => (
-                        <Link key={p} href={`/products/${p}`} className="inline-flex items-center gap-1 rounded bg-surface-2 px-1.5 py-px text-[11px] text-ink-2 hover:text-accent-ink">
+                        <Link key={p} href={`/products/${p}`} className="inline-flex items-center gap-1 rounded bg-surface-2 px-1.5 py-px text-[0.6875rem] text-ink-2 hover:text-accent-ink">
                           <CategoryDot slot={categoryById[productById[p]?.category ?? "solvents"]?.slot ?? 1} className="size-1.5!" />
                           {productById[p]?.name ?? p}
                         </Link>
                       ))}
-                      {c.products.length > 4 && <span className="text-[11px] text-muted">+{c.products.length - 4}</span>}
+                      {c.products.length > 4 && <span className="text-[0.6875rem] text-muted">+{c.products.length - 4}</span>}
                     </span>
                   </td>
                   <td className="border-b border-line/60 px-3 py-2.5 text-xs whitespace-nowrap text-ink-2">{[c.types.manufacturer && "Manufacturer", (c.types.trader || c.types.distributor) && "Trader", c.types.exporter && "Exporter"].filter(Boolean).join(" · ") || "–"}</td>

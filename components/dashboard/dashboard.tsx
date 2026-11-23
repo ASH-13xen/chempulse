@@ -74,7 +74,7 @@ export function Dashboard({ board, news }: { board: Board; news: NewsItem[] }) {
             <div className="flex items-center gap-2 text-xs font-medium text-accent-ink">
               <span className="live-dot" /> Market overview
             </div>
-            <h1 className="mt-2 text-2xl font-semibold tracking-tight text-ink sm:text-[28px]">What is moving in chemicals</h1>
+            <h1 className="mt-2 text-2xl font-semibold tracking-tight text-ink sm:text-[1.75rem]">What is moving in chemicals</h1>
             <p className="mt-1 max-w-2xl text-sm text-ink-2">
               {chems.length} chemicals and {board.rows.length - chems.length} driver markets. Latest China close {fmtDate(board.asOf, "long")}; India imports to {fmtDate(importMonth, "month")}.
             </p>
@@ -113,7 +113,7 @@ export function Dashboard({ board, news }: { board: Board; news: NewsItem[] }) {
         />
         <StatTile
           label={`Biggest move · ${PERIOD_LABEL[period]}`}
-          value={biggest ? <Change value={changeFor(biggest, period)} size="lg" className="text-[28px]!" /> : "–"}
+          value={biggest ? <Change value={changeFor(biggest, period)} size="lg" className="text-[1.75rem]!" /> : "–"}
           sub={
             biggest ? (
               <Link href={hrefFor(biggest.id)} className="font-medium text-ink hover:text-accent-ink hover:underline">
@@ -173,7 +173,7 @@ export function Dashboard({ board, news }: { board: Board; news: NewsItem[] }) {
             </>
           }
           actions={
-            <Link href="/alerts" className="text-[13px] font-medium text-accent-ink hover:underline">
+            <Link href="/alerts" className="text-[0.8125rem] font-medium text-accent-ink hover:underline">
               All signals →
             </Link>
           }
@@ -215,7 +215,7 @@ export function Dashboard({ board, news }: { board: Board; news: NewsItem[] }) {
           subtitle="Biggest changes in import volume vs a year earlier"
           info={<p>From India&apos;s official monthly trade data (Tradestat). Rising imports usually mean rising demand or a domestic shortfall; falling imports can mean weak demand or more local supply.</p>}
           actions={
-            <Link href="/imports" className="text-[13px] font-medium text-accent-ink hover:underline">
+            <Link href="/imports" className="text-[0.8125rem] font-medium text-accent-ink hover:underline">
               Imports →
             </Link>
           }
@@ -233,7 +233,7 @@ export function Dashboard({ board, news }: { board: Board; news: NewsItem[] }) {
             </span>
           }
           actions={
-            <Link href="/news" className="text-[13px] font-medium text-accent-ink hover:underline">
+            <Link href="/news" className="text-[0.8125rem] font-medium text-accent-ink hover:underline">
               All news →
             </Link>
           }
@@ -294,10 +294,10 @@ export function SignalList({ events }: { events: SignalEvent[] }) {
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
                 <span className="truncate text-sm font-medium text-ink group-hover:text-accent-ink">{e.name}</span>
-                <span className="rounded bg-surface-2 px-1.5 py-px text-[10px] font-semibold tracking-wide text-ink-2 uppercase">{EVENT_ICON[e.type].label}</span>
+                <span className="rounded bg-surface-2 px-1.5 py-px text-[0.625rem] font-semibold tracking-wide text-ink-2 uppercase">{EVENT_ICON[e.type].label}</span>
                 <span className="ml-auto shrink-0 text-xs text-muted">{fmtDate(e.d)}</span>
               </div>
-              <p className="text-[13px] text-ink-2">{e.text}</p>
+              <p className="text-[0.8125rem] text-ink-2">{e.text}</p>
             </div>
           </Link>
         </li>
@@ -381,7 +381,7 @@ function ChemicalGrid({ rows, period }: { rows: Row[]; period: PeriodKey }) {
               { value: "monthly", label: "Monthly" },
             ]}
           />
-          <select value={sort} onChange={(e) => setSort(e.target.value as GridSort)} className="input h-8 w-auto text-[13px]" aria-label="Sort cards">
+          <select value={sort} onChange={(e) => setSort(e.target.value as GridSort)} className="input h-8 w-auto text-[0.8125rem]" aria-label="Sort cards">
             <option value="name">A → Z</option>
             <option value="up">Biggest rise</option>
             <option value="down">Biggest fall</option>
@@ -402,12 +402,12 @@ function ChemicalGrid({ rows, period }: { rows: Row[]; period: PeriodKey }) {
                 <div className="mt-0.5 flex items-center gap-1.5 text-xs text-muted">
                   {r.short} <FreqBadge frequency={r.frequency} />
                   {r.noisy && !r.isGroupData && (
-                    <span className="rounded bg-surface-3 px-1 text-[10px] font-semibold text-ink-2" title="India imports only small or irregular amounts, so the monthly import price jumps around. Read it with care.">
+                    <span className="rounded bg-surface-3 px-1 text-[0.625rem] font-semibold text-ink-2" title="India imports only small or irregular amounts, so the monthly import price jumps around. Read it with care.">
                       NOISY
                     </span>
                   )}
                   {r.isGroupData && (
-                    <span className="rounded bg-[color-mix(in_oklab,var(--warn)_18%,transparent)] px-1 text-[10px] font-semibold text-ink-2" title="Customs data covers a broad product group">
+                    <span className="rounded bg-[color-mix(in_oklab,var(--warn)_18%,transparent)] px-1 text-[0.625rem] font-semibold text-ink-2" title="Customs data covers a broad product group">
                       GROUP
                     </span>
                   )}
@@ -420,7 +420,7 @@ function ChemicalGrid({ rows, period }: { rows: Row[]; period: PeriodKey }) {
                 <PriceText row={r} className="block text-lg font-semibold text-ink" />
                 <div className="mt-0.5 flex items-center gap-2">
                   <Change value={changeFor(r, period)} size="xs" />
-                  <span className="text-[11px] text-muted">{PERIOD_LABEL[period].toLowerCase()}</span>
+                  <span className="text-[0.6875rem] text-muted">{PERIOD_LABEL[period].toLowerCase()}</span>
                 </div>
               </div>
               <Sparkline values={r.spark} width={110} height={40} animate={false} />
@@ -430,7 +430,7 @@ function ChemicalGrid({ rows, period }: { rows: Row[]; period: PeriodKey }) {
               <div className="flex-1">
                 <RangeBar pos={r.rangePos} lo={r.lo52} hi={r.hi52} unit={r.unit} compact />
               </div>
-              <span className="text-[11px] text-muted">{r.frequency === "monthly" ? fmtDate(r.lastDate, "month") : fmtDate(r.lastDate)}</span>
+              <span className="text-[0.6875rem] text-muted">{r.frequency === "monthly" ? fmtDate(r.lastDate, "month") : fmtDate(r.lastDate)}</span>
             </div>
           </Link>
         ))}

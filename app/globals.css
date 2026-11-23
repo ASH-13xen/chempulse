@@ -140,10 +140,18 @@ body {
 ::selection {
   background: var(--accent-wash);
 }
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-  border-radius: 6px;
+/* Keyboard focus ring. In the base layer so component classes (.input) and utilities
+   (outline-none) can override it; text fields draw their own ring instead. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: none;
+  }
 }
 .tnum {
   font-variant-numeric: tabular-nums;
@@ -156,6 +164,9 @@ body {
 /* ------------------------------------------------------------------ components */
 @layer components {
 .card {
+  /* min-width 0: a card in a grid or flex row may shrink below its content (wide
+     tables scroll inside it) instead of pushing the page sideways on phones */
+  min-width: 0;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 16px;
@@ -172,14 +183,14 @@ body {
 .chip {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  height: 30px;
-  padding: 0 12px;
+  gap: 0.375rem;
+  height: 1.875rem;
+  padding: 0 0.75rem;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: var(--surface);
   color: var(--ink-2);
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 500;
   transition: background 0.15s, color 0.15s, border-color 0.15s;
   white-space: nowrap;
@@ -196,11 +207,11 @@ body {
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  height: 36px;
-  padding: 0 14px;
+  gap: 0.5rem;
+  height: 2.25rem;
+  padding: 0 0.875rem;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   border: 1px solid var(--line);
   background: var(--surface);
@@ -224,14 +235,14 @@ body {
   opacity: 0.9;
 }
 .input {
-  height: 36px;
+  height: 2.25rem;
   width: 100%;
   border-radius: 10px;
   border: 1px solid var(--line);
   background: var(--surface);
   color: var(--ink);
-  padding: 0 12px;
-  font-size: 14px;
+  padding: 0 0.75rem;
+  font-size: 0.875rem;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 .input:focus {
@@ -242,17 +253,90 @@ body {
 .input::placeholder {
   color: var(--muted);
 }
+.input:hover:not(:focus):not(:disabled) {
+  border-color: var(--line-strong);
+}
+/* Search boxes (components/ui/search-field.tsx): icon, field and clear button as one unit */
+.search-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.search-field > .search-icon {
+  position: absolute;
+  left: 0.75rem;
+  width: 1rem;
+  height: 1rem;
+  color: var(--muted);
+  pointer-events: none;
+  transition: color 0.15s;
+}
+.search-field:focus-within > .search-icon {
+  color: var(--accent-ink);
+}
+.search-field .input {
+  padding-left: 2.25rem;
+  padding-right: 2.125rem;
+  text-overflow: ellipsis;
+}
+.search-field[data-size="sm"] .input {
+  height: 2rem;
+  border-radius: 9px;
+  font-size: 0.8125rem;
+  padding-left: 1.9375rem;
+}
+.search-field[data-size="sm"] > .search-icon {
+  left: 0.625rem;
+  width: 0.875rem;
+  height: 0.875rem;
+}
+.search-field[data-size="lg"] .input {
+  height: 2.875rem;
+  border-radius: 12px;
+  font-size: 0.9375rem;
+  padding-left: 2.625rem;
+  padding-right: 2.5rem;
+}
+.search-field[data-size="lg"] > .search-icon {
+  left: 0.875rem;
+  width: 1.125rem;
+  height: 1.125rem;
+}
+.search-clear {
+  position: absolute;
+  right: 0.375rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 7px;
+  color: var(--muted);
+  transition: background-color 0.15s, color 0.15s;
+}
+.search-clear:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+.search-field[data-size="lg"] .search-clear {
+  right: 0.5625rem;
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
 .kbd {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 20px;
-  height: 20px;
-  padding: 0 5px;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.3125rem;
   border-radius: 5px;
   border: 1px solid var(--line-strong);
   border-bottom-width: 2px;
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-family: var(--font-mono);
   color: var(--ink-2);
   background: var(--surface-2);
@@ -263,8 +347,8 @@ body {
 /* live dot */
 .live-dot {
   position: relative;
-  width: 8px;
-  height: 8px;
+  width: 0.5rem;
+  height: 0.5rem;
   border-radius: 999px;
   background: var(--up);
 }
@@ -331,10 +415,10 @@ body {
 .menu-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px 10px;
+  gap: 0.625rem;
+  padding: 0.5rem 0.625rem;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 0.875rem;
   cursor: pointer;
   outline: none;
   user-select: none;
@@ -387,5 +471,31 @@ body {
 @keyframes fade-in {
   from {
     opacity: 0;
+  }
+}
+
+/* ------------------------------------------------------------------ phones
+   Everything sized in rem shrinks by 12.5% on small screens. Text inputs stay at
+   16px: iPhones zoom the whole page in when you tap a smaller one. */
+@media (max-width: 639px) {
+  html {
+    font-size: 14px;
+  }
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+  /* keyboard shortcut hints mean nothing on a touch screen */
+  [role="listbox"] .kbd {
+    display: none;
+  }
+}
+@layer components {
+  @media (max-width: 639px) {
+    input.input,
+    select.input {
+      height: 2.6rem;
+    }
   }
 }

@@ -68,7 +68,7 @@ export function QuotesCard({ chem, quotes: serverQuotes, storage, lastPrice }: {
       exportName={`${chem.id}-quotes`}
     >
       {!enabled && (
-        <div className="mb-4 rounded-xl bg-surface-2 px-4 py-3 text-[13px] text-ink-2">
+        <div className="mb-4 rounded-xl bg-surface-2 px-4 py-3 text-[0.8125rem] text-ink-2">
           Saving quotes needs the MongoDB database. This preview is running on local snapshot files, so the form is switched off.
         </div>
       )}
@@ -112,7 +112,7 @@ export function QuotesCard({ chem, quotes: serverQuotes, storage, lastPrice }: {
             <Plus className="size-4" /> {busy ? "Saving…" : "Add"}
           </button>
         </div>
-        {err && <p className="col-span-full text-[13px] text-down-ink">{err}</p>}
+        {err && <p className="col-span-full text-[0.8125rem] text-down-ink">{err}</p>}
       </form>
 
       <div className="mt-5">

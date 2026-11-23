@@ -51,7 +51,7 @@ export function RangeBar({ pos, lo, hi, unit, compact = false }: { pos: number |
         <span className="absolute top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[var(--surface)] bg-[var(--accent)] shadow" style={{ left: `${pos * 100}%` }} />
       </div>
       {!compact && (
-        <div className="tnum mt-1 flex justify-between text-[11px] text-muted">
+        <div className="tnum mt-1 flex justify-between text-[0.6875rem] text-muted">
           <span>{money.fmt(lo, unit)}</span>
           <span>{money.fmt(hi, unit)}</span>
         </div>

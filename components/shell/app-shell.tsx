@@ -95,8 +95,8 @@ export function AppShell({ board, authEnabled, children }: { board: Board; authE
           <Logo />
           {!mini && (
             <span className="leading-tight">
-              <span className="block text-[15px] font-semibold tracking-tight text-ink">ChemPulse</span>
-              <span className="block text-[11px] text-muted">Chemical price trends</span>
+              <span className="block text-[0.9375rem] font-semibold tracking-tight text-ink">ChemPulse</span>
+              <span className="block text-[0.6875rem] text-muted">Chemical price trends</span>
             </span>
           )}
         </Link>
@@ -124,7 +124,7 @@ export function AppShell({ board, authEnabled, children }: { board: Board; authE
       </ul>
       <div className={`border-t border-line p-3 ${mini ? "flex flex-col items-center gap-2" : ""}`}>
         {!mini && (
-          <button type="button" onClick={startTour} className="mb-2 flex w-full items-center gap-2 rounded-[10px] border border-dashed border-line-strong px-3 py-2.5 text-left text-[13px] text-ink-2 hover:border-[var(--accent)] hover:text-ink">
+          <button type="button" onClick={startTour} className="mb-2 flex w-full items-center gap-2 rounded-[10px] border border-dashed border-line-strong px-3 py-2.5 text-left text-[0.8125rem] text-ink-2 hover:border-[var(--accent)] hover:text-ink">
             <Sparkles className="size-4 text-accent-ink" />
             <span>
               New here? <b className="font-semibold text-ink">Take the tour</b>
@@ -134,7 +134,7 @@ export function AppShell({ board, authEnabled, children }: { board: Board; authE
         <button
           type="button"
           onClick={() => updateSettings({ sidebar: mini ? "open" : "mini" })}
-          className="hidden h-9 w-full items-center gap-2 rounded-lg px-3 text-[13px] text-muted hover:bg-surface/70 hover:text-ink lg:flex"
+          className="hidden h-9 w-full items-center gap-2 rounded-lg px-3 text-[0.8125rem] text-muted hover:bg-surface/70 hover:text-ink lg:flex"
           aria-label={mini ? "Expand sidebar" : "Collapse sidebar"}
         >
           <ChevronsLeft className={`size-4 transition-transform ${mini ? "rotate-180" : ""}`} />
@@ -259,8 +259,8 @@ function Status({ board }: { board: Board }) {
       <Popover.Portal>
         <Popover.Content align="end" sideOffset={8} className="pop w-[320px] p-4 text-sm">
           <div className="font-semibold text-ink">Data freshness</div>
-          <p className="mt-1 text-[13px] text-ink-2">The collector runs every 3 hours. A price is saved only when it changes; otherwise nothing is written.</p>
-          <dl className="mt-3 space-y-1.5 text-[13px]">
+          <p className="mt-1 text-[0.8125rem] text-ink-2">The collector runs every 3 hours. A price is saved only when it changes; otherwise nothing is written.</p>
+          <dl className="mt-3 space-y-1.5 text-[0.8125rem]">
             <div className="flex justify-between">
               <dt className="text-ink-2">Last check</dt>
               <dd className="font-medium text-ink">{now ? fmtAgo(board.lastChecked, now) : "–"}</dd>
@@ -278,7 +278,7 @@ function Status({ board }: { board: Board }) {
               <dd className="font-medium text-ink">{board.storage === "mongo" ? "MongoDB Atlas" : "Local snapshot"}</dd>
             </div>
           </dl>
-          <Link href="/data" className="mt-3 inline-block text-[13px] font-medium text-accent-ink hover:underline">
+          <Link href="/data" className="mt-3 inline-block text-[0.8125rem] font-medium text-accent-ink hover:underline">
             See every source →
           </Link>
         </Popover.Content>
@@ -301,7 +301,7 @@ function SignalsBell({ board }: { board: Board }) {
       <Popover.Trigger asChild>
         <button type="button" aria-label={`Signals${count ? `, ${count} new` : ""}`} className="relative inline-flex size-9 items-center justify-center rounded-lg text-ink-2 hover:bg-surface-2 hover:text-ink">
           <Bell className="size-[18px]" />
-          {count > 0 && <span className="tnum absolute top-1 right-1 flex min-w-4 items-center justify-center rounded-full bg-[var(--down)] px-1 text-[10px] leading-4 font-semibold text-white">{count}</span>}
+          {count > 0 && <span className="tnum absolute top-1 right-1 flex min-w-4 items-center justify-center rounded-full bg-[var(--down)] px-1 text-[0.625rem] leading-4 font-semibold text-white">{count}</span>}
         </button>
       </Popover.Trigger>
       <Popover.Portal>
@@ -309,7 +309,7 @@ function SignalsBell({ board }: { board: Board }) {
           {hits.length > 0 && (
             <div className="mb-1 rounded-lg bg-surface-2 p-3">
               <div className="text-xs font-semibold text-ink">Your alert rules triggered ({hits.length})</div>
-              <ul className="mt-1 space-y-0.5 text-[13px] text-ink-2">
+              <ul className="mt-1 space-y-0.5 text-[0.8125rem] text-ink-2">
                 {hits.slice(0, 4).map((h) => (
                   <li key={h.id}>• {rowsById[h.target]?.name}</li>
                 ))}
@@ -325,12 +325,12 @@ function SignalsBell({ board }: { board: Board }) {
                     <span className="truncate text-sm font-medium text-ink">{e.name}</span>
                     <span className="shrink-0 text-xs text-muted">{fmtDate(e.d)}</span>
                   </div>
-                  <div className="line-clamp-2 text-[13px] text-ink-2">{e.text}</div>
+                  <div className="line-clamp-2 text-[0.8125rem] text-ink-2">{e.text}</div>
                 </Link>
               </li>
             ))}
           </ul>
-          <Link href="/alerts" className="mt-1 block rounded-lg px-3 py-2 text-center text-[13px] font-medium text-accent-ink hover:bg-surface-2">
+          <Link href="/alerts" className="mt-1 block rounded-lg px-3 py-2 text-center text-[0.8125rem] font-medium text-accent-ink hover:bg-surface-2">
             All signals & alert rules →
           </Link>
         </Popover.Content>
@@ -396,7 +396,7 @@ function SettingsMenu() {
               <Radio on={s.prices === "native"} /> Original units (¥/t, $/bbl, ₹/kg)
             </DropdownMenu.RadioItem>
           </DropdownMenu.RadioGroup>
-          <p className="px-2.5 pt-1 pb-2 text-[11px] leading-snug text-muted">Converted with ECB exchange rates (charts use each day&apos;s rate). China prices include China VAT and exclude freight and duty.</p>
+          <p className="px-2.5 pt-1 pb-2 text-[0.6875rem] leading-snug text-muted">Converted with ECB exchange rates (charts use each day&apos;s rate). China prices include China VAT and exclude freight and duty.</p>
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu.Root>

@@ -106,11 +106,11 @@ export function Tour({ open, onClose }: { open: boolean; onClose: () => void }) 
             </div>
             <div className="flex gap-2">
               {i > 0 && (
-                <button type="button" className="btn h-8 px-3 text-[13px]" onClick={() => setI(i - 1)}>
+                <button type="button" className="btn h-8 px-3 text-[0.8125rem]" onClick={() => setI(i - 1)}>
                   Back
                 </button>
               )}
-              <button type="button" className="btn btn-primary h-8 px-3 text-[13px]" onClick={() => (last ? onClose() : setI(i + 1))}>
+              <button type="button" className="btn btn-primary h-8 px-3 text-[0.8125rem]" onClick={() => (last ? onClose() : setI(i + 1))}>
                 {last ? "Done" : "Next"}
               </button>
             </div>

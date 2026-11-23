@@ -12,7 +12,7 @@ export const metadata: Metadata = { title: "Data & methods" };
 
 const SOURCES = [
   { id: "futures", name: "China futures exchanges", what: "Daily open/high/low/close for 15 contracts (PP, LLDPE, PVC, MEG, styrene, benzene, LPG, PTA, methanol, caustic soda, soda ash, paraxylene, propylene, urea, aluminium).", how: "Read every 3 hours with the free AkShare library (exchange quotes via Sina Finance). During Chinese trading hours today's bar updates.", link: "https://akshare.akfamily.xyz/" },
-  { id: "fred", name: "FRED / US EIA", what: "Brent and WTI crude, Henry Hub natural gas, Mont Belvieu propane.", how: "Public CSV download every 3 hours. FRED posts these a few days after the trading date.", link: "https://fred.stlouisfed.org/" },
+  { id: "fred", name: "FRED / US EIA", what: "Brent and WTI crude, Henry Hub natural gas, Mont Belvieu propane.", how: "Public CSV download every 3 hours. If FRED does not answer, the identical series are read from the EIA spreadsheets instead. Both post a few days after the trading date.", link: "https://fred.stlouisfed.org/" },
   { id: "fx", name: "European Central Bank (Frankfurter)", what: "Rupees per US dollar and per Chinese yuan.", how: "Free API, every 3 hours. ECB publishes once per working day.", link: "https://frankfurter.dev/" },
   { id: "tradestat", name: "Tradestat, Department of Commerce", what: "India's monthly imports by HS code: quantity, value and origin country.", how: "Checked once a day; only new months are downloaded. The government publishes about 6–8 weeks after month-end and revises recent months.", link: "https://tradestat.commerce.gov.in/" },
   { id: "indiamart", name: "IndiaMART (seller listings)", what: "Sellers, cities and asking prices for 46 products, national and city pages.", how: "Read slowly (one page every 10–16 s, 40 pages per run) because IndiaMART limits fast visitors; a full pass takes about three days. Pauses for 6 hours if the site pushes back. Only public pages allowed by robots.txt.", link: "https://dir.indiamart.com/" },
@@ -87,23 +87,25 @@ export default async function DataPage() {
                   <span className="text-xs text-muted">Not run yet</span>
                 )}
               </div>
-              <p className="mt-2 text-[13px] text-ink-2">{s.what}</p>
-              <p className="mt-2 text-[13px] text-muted">{s.how}</p>
-              <dl className="mt-3 space-y-1 border-t border-line pt-3 text-[13px]">
-                <div className="flex justify-between">
-                  <dt className="text-ink-2">Last run</dt>
+              <p className="mt-2 text-[0.8125rem] text-ink-2">{s.what}</p>
+              <p className="mt-2 text-[0.8125rem] text-muted">{s.how}</p>
+              <dl className="mt-3 space-y-1 border-t border-line pt-3 text-[0.8125rem]">
+                <div className="flex justify-between gap-4">
+                  <dt className="shrink-0 text-ink-2">Last run</dt>
                   <dd className="text-ink">
                     <Ago iso={run?.at} />
                   </dd>
                 </div>
                 {run && (
-                  <div className="flex justify-between">
-                    <dt className="text-ink-2">Result</dt>
-                    <dd className="text-ink">{run.ok ? `${run.new ?? 0} new · ${run.updated ?? 0} changed · ${run.unchanged ?? 0} unchanged` : run.error?.slice(0, 80)}</dd>
+                  <div className="flex justify-between gap-4">
+                    <dt className="shrink-0 text-ink-2">Result</dt>
+                    <dd className={`min-w-0 text-right break-words ${run.ok ? "text-ink" : "text-down-ink"}`} title={run.ok ? undefined : run.error}>
+                      {run.ok ? `${run.new ?? 0} new · ${run.updated ?? 0} changed · ${run.unchanged ?? 0} unchanged` : friendlyError(run.error)}
+                    </dd>
                   </div>
                 )}
               </dl>
-              <a href={s.link} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1 text-[13px] font-medium text-accent-ink hover:underline">
+              <a href={s.link} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1 text-[0.8125rem] font-medium text-accent-ink hover:underline">
                 Source <ExternalLink className="size-3" />
               </a>
             </div>
@@ -113,16 +115,16 @@ export default async function DataPage() {
 
       <section className="card p-5">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <h2 className="text-[15px] font-semibold text-ink">Data checks</h2>
+          <h2 className="text-[0.9375rem] font-semibold text-ink">Data checks</h2>
           <span className="text-xs text-muted">
             Run after every collection · last run <Ago iso={board.sources.checks?.at} />
           </span>
         </div>
-        <p className="mt-1 text-[13px] text-ink-2">Automatic consistency and cross-source checks. A warning does not stop collection; it tells you which number to double-check.</p>
+        <p className="mt-1 text-[0.8125rem] text-ink-2">Automatic consistency and cross-source checks. A warning does not stop collection; it tells you which number to double-check.</p>
         {board.sources.checks?.checks?.length ? (
           <ul className="mt-3 grid gap-2 md:grid-cols-2">
             {board.sources.checks.checks.map((c) => (
-              <li key={c.name} className="flex items-start gap-2 rounded-lg bg-surface-2 px-3 py-2 text-[13px]">
+              <li key={c.name} className="flex items-start gap-2 rounded-lg bg-surface-2 px-3 py-2 text-[0.8125rem]">
                 {c.ok ? <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-up-ink" /> : <CircleAlert className="mt-0.5 size-4 shrink-0 text-[var(--serious)]" />}
                 <span>
                   <b className="font-medium text-ink">{CHECK_LABEL[c.name] ?? c.name}</b> <span className="text-ink-2">{c.detail}</span>
@@ -131,14 +133,14 @@ export default async function DataPage() {
             ))}
           </ul>
         ) : (
-          <p className="mt-3 text-[13px] text-ink-2">Checks have not run yet; they run at the end of the next collection.</p>
+          <p className="mt-3 text-[0.8125rem] text-ink-2">Checks have not run yet; they run at the end of the next collection.</p>
         )}
       </section>
 
       <section className="card overflow-hidden">
         <div className="px-5 pt-4 pb-3">
-          <h2 className="text-[15px] font-semibold text-ink">Coverage by chemical</h2>
-          <p className="text-[13px] text-ink-2">What data each chemical has today.</p>
+          <h2 className="text-[0.9375rem] font-semibold text-ink">Coverage by chemical</h2>
+          <p className="text-[0.8125rem] text-ink-2">What data each chemical has today.</p>
         </div>
         <div className="overflow-x-auto">
           <table className="tnum w-full text-sm">
@@ -183,20 +185,20 @@ export default async function DataPage() {
 
       <section className="grid gap-6 xl:grid-cols-2">
         <div className="card p-5">
-          <h2 className="text-[15px] font-semibold text-ink">How the numbers are made</h2>
+          <h2 className="text-[0.9375rem] font-semibold text-ink">How the numbers are made</h2>
           <dl className="mt-3 divide-y divide-[var(--line)]">
             {GLOSSARY.map(([t, d]) => (
               <div key={t} className="py-3">
                 <dt className="text-sm font-medium text-ink">{t}</dt>
-                <dd className="mt-1 text-[13px] leading-relaxed text-ink-2">{d}</dd>
+                <dd className="mt-1 text-[0.8125rem] leading-relaxed text-ink-2">{d}</dd>
               </div>
             ))}
           </dl>
         </div>
         <div className="space-y-6">
           <div className="card p-5">
-            <h2 className="text-[15px] font-semibold text-ink">What this data can and cannot tell you</h2>
-            <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-ink-2">
+            <h2 className="text-[0.9375rem] font-semibold text-ink">What this data can and cannot tell you</h2>
+            <ul className="mt-3 space-y-2 text-[0.8125rem] leading-relaxed text-ink-2">
               <li>• It is built for <b className="text-ink">spotting trends</b>: direction, speed, turning points and unusual moves. It is not a quote for any city or supplier.</li>
               <li>• China futures lead Indian prices for many petrochemicals, but freight, duties, the rupee and local supply can make India move later or differently.</li>
               <li>• Import prices are averages across grades and sellers and arrive 6–8 weeks after month-end.</li>
@@ -205,9 +207,9 @@ export default async function DataPage() {
             </ul>
           </div>
           <div className="card p-5">
-            <h2 className="text-[15px] font-semibold text-ink">Recent collector runs</h2>
+            <h2 className="text-[0.9375rem] font-semibold text-ink">Recent collector runs</h2>
             <div className="mt-3 max-h-[360px] overflow-auto">
-              <table className="tnum w-full text-[13px]">
+              <table className="tnum w-full text-[0.8125rem]">
                 <thead className="sticky top-0 bg-surface text-xs text-muted">
                   <tr className="border-b border-line">
                     <th className="py-1.5 text-left font-medium">When</th>
@@ -237,12 +239,21 @@ export default async function DataPage() {
               </table>
             </div>
           </div>
-          <div className="card p-5 text-[13px] text-ink-2">
-            <h2 className="text-[15px] font-semibold text-ink">Credits</h2>
+          <div className="card p-5 text-[0.8125rem] text-ink-2">
+            <h2 className="text-[0.9375rem] font-semibold text-ink">Credits</h2>
             <p className="mt-2">Charts by TradingView Lightweight Charts™ (Apache 2.0). Animations by GSAP. Market data from the sources listed above; trade data © Department of Commerce, Government of India (DGCI&S).</p>
           </div>
         </div>
       </section>
     </div>
   );
+}
+
+/** Collector errors are Python exception text; show the gist in plain words. */
+function friendlyError(e?: string) {
+  if (!e) return "failed";
+  if (/timed out|ConnectTimeout|ReadTimeout/i.test(e)) return "the site did not answer in time; retried next run";
+  if (/40[13]|429|Forbidden|Too Many/i.test(e)) return "the site refused the request; paused and retried later";
+  if (/ConnectionError|Name or service|getaddrinfo|resolve/i.test(e)) return "could not reach the site; retried next run";
+  return e.length > 90 ? `${e.slice(0, 90)}…` : e;
 }

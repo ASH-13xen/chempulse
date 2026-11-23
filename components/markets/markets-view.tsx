@@ -71,7 +71,7 @@ function MarketCard({ row: r, period }: { row: Row; period: PeriodKey }) {
       <div className="mt-3 flex items-end justify-between gap-3">
         <div>
           <PriceText row={r} className="text-xl font-semibold text-ink" />
-          <div className="text-[11px] text-muted">{PERIOD_LABEL[period]} change</div>
+          <div className="text-[0.6875rem] text-muted">{PERIOD_LABEL[period]} change</div>
         </div>
         <Sparkline values={r.spark} width={130} height={46} animate={false} />
       </div>

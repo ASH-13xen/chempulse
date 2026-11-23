@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, Search, Store } from "lucide-react";
+import { ArrowLeft, Store } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { categoryById, chemicalById } from "@/lib/catalog";
@@ -19,6 +19,7 @@ import { Segmented } from "../ui/segmented";
 import { useMoney } from "../providers/money";
 import { StarButton } from "../ui/row-bits";
 import { SellerTable, SOURCE_LABEL, SOURCE_SLOT, sourceLabel } from "./seller-table";
+import { SearchField } from "@/components/ui/search-field";
 
 export function ProductView({ product, listings, summary, history }: { product: Product; listings: Listing[]; summary: ProductSummary | null; history: { d: string; all: number | null; Chennai: number | null; Mumbai: number | null }[] }) {
   const money = useMoney();
@@ -73,7 +74,7 @@ export function ProductView({ product, listings, summary, history }: { product: 
   return (
     <Reveal className="space-y-6">
       <div data-reveal>
-        <div className="flex items-center gap-2 text-[13px] text-ink-2">
+        <div className="flex items-center gap-2 text-[0.8125rem] text-ink-2">
           <Link href="/suppliers" className="inline-flex items-center gap-1 hover:text-ink">
             <ArrowLeft className="size-3.5" /> Suppliers
           </Link>
@@ -84,7 +85,7 @@ export function ProductView({ product, listings, summary, history }: { product: 
         </div>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h1 className="flex flex-wrap items-center gap-2 text-[28px] font-semibold tracking-tight text-ink">
+            <h1 className="flex flex-wrap items-center gap-2 text-[1.75rem] font-semibold tracking-tight text-ink">
               {product.name}: sellers & asking prices <StarButton id={product.id} name={`${product.name} seller prices`} kind="product" />
             </h1>
             <p className="mt-1 max-w-3xl text-sm text-ink-2">
@@ -192,10 +193,7 @@ export function ProductView({ product, listings, summary, history }: { product: 
         })}
       >
         <div className="mb-3 flex flex-wrap items-center gap-2">
-          <div className="relative w-full sm:w-60">
-            <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted" />
-            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Find a seller or city…" className="input pl-9" aria-label="Find a seller" />
-          </div>
+          <SearchField value={q} onValueChange={setQ} placeholder="Find a seller or city…" aria-label="Find a seller" wrapperClassName="w-full sm:w-60" />
           <select value={region} onChange={(e) => setRegion(e.target.value)} className="input h-9 w-auto" aria-label="Region">
             <option value="all">All regions ({base.length})</option>
             {regionList.map(([g, n]) => (

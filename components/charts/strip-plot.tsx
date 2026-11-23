@@ -65,7 +65,7 @@ export function StripPlot({ dots, groups, reference, referenceLabel, medians, sy
           {ticks.map((t) => (
             <g key={t}>
               <line x1={x(t)} x2={x(t)} y1={top - 6} y2={height - 24} stroke="var(--grid)" />
-              <text x={x(t)} y={height - 8} textAnchor="middle" className="tnum fill-[var(--muted)] text-[11px]">
+              <text x={x(t)} y={height - 8} textAnchor="middle" className="tnum fill-[var(--muted)] text-[0.6875rem]">
                 {symbol}
                 {fmtNum(t, { digits: t < 10 ? 2 : 0 })}
               </text>
@@ -74,7 +74,7 @@ export function StripPlot({ dots, groups, reference, referenceLabel, medians, sy
           {reference != null && reference >= lo && reference <= hi && (
             <g>
               <line x1={x(reference)} x2={x(reference)} y1={top - 10} y2={height - 24} stroke="var(--ink-2)" strokeWidth={1.5} />
-              <text x={x(reference)} y={top - 14} textAnchor="middle" className="fill-[var(--ink-2)] text-[11px] font-medium">
+              <text x={x(reference)} y={top - 14} textAnchor="middle" className="fill-[var(--ink-2)] text-[0.6875rem] font-medium">
                 {referenceLabel ?? "Reference"} {symbol}
                 {fmtNum(reference, { digits: reference < 10 ? 2 : 0 })}
               </text>
@@ -87,10 +87,10 @@ export function StripPlot({ dots, groups, reference, referenceLabel, medians, sy
             return (
               <g key={g}>
                 <rect x={left} y={top + i * rowH + 2} width={Math.max(0, w - left - right)} height={rowH - 4} rx={6} fill={i % 2 ? "transparent" : "var(--surface-2)"} />
-                <text x={left - 10} y={cy} dy="0.32em" textAnchor="end" className="fill-[var(--ink)] text-[12px] font-medium">
+                <text x={left - 10} y={cy} dy="0.32em" textAnchor="end" className="fill-[var(--ink)] text-[0.75rem] font-medium">
                   {g}
                 </text>
-                <text x={left - 10} y={cy + 12} dy="0.32em" textAnchor="end" className="fill-[var(--muted)] text-[10px]">
+                <text x={left - 10} y={cy + 12} dy="0.32em" textAnchor="end" className="fill-[var(--muted)] text-[0.625rem]">
                   {n} priced
                 </text>
                 {dots

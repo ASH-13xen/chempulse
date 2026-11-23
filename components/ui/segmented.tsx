@@ -20,7 +20,7 @@ export function Segmented<T extends string>({ value, onChange, options, size = "
     return () => ro.disconnect();
   }, [value, options.length]);
 
-  const h = size === "sm" ? "h-7 text-xs" : "h-8 text-[13px]";
+  const h = size === "sm" ? "h-7 text-xs" : "h-8 text-[0.8125rem]";
   return (
     <div ref={wrap} role="radiogroup" aria-label={ariaLabel} className="relative inline-flex items-center rounded-[10px] border border-line bg-surface-2 p-0.5">
       {ind && (

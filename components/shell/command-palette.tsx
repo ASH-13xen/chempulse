@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, CornerDownLeft, FileDown, Moon, Search, Sparkles, Star } from "lucide-react";
+import { ArrowRight, CornerDownLeft, FileDown, Moon, Search, Sparkles, Star, X } from "lucide-react";
 import { Dialog } from "radix-ui";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
@@ -139,20 +139,36 @@ export function CommandPalette({ open, onOpenChange, rows, onTheme, onTour }: { 
         >
           <Dialog.Title className="sr-only">Search</Dialog.Title>
           <Dialog.Description className="sr-only">Search chemicals, markets, pages and actions</Dialog.Description>
-          <div className="flex items-center gap-3 border-b border-line px-4">
-            <Search className="size-[18px] text-muted" />
+          <div className="flex items-center gap-3 border-b border-line px-5">
+            <Search aria-hidden className="size-5 shrink-0 text-accent-ink" />
             <input
               autoFocus
+              type="search"
+              autoComplete="off"
+              spellCheck={false}
               value={q}
               onChange={(e) => {
                 setQ(e.target.value);
                 setActive(0);
               }}
               placeholder="Search chemicals, CAS or HS code, markets, pages…"
-              className="h-14 flex-1 bg-transparent text-[15px] text-ink outline-none placeholder:text-muted"
+              className="h-[60px] min-w-0 flex-1 bg-transparent text-base text-ink outline-none placeholder:text-muted"
               aria-label="Search"
             />
-            <span className="kbd">Esc</span>
+            {q && (
+              <button
+                type="button"
+                aria-label="Clear search"
+                onClick={() => {
+                  setQ("");
+                  setActive(0);
+                }}
+                className="inline-flex size-7 shrink-0 items-center justify-center rounded-lg text-muted transition-colors hover:bg-surface-2 hover:text-ink"
+              >
+                <X className="size-4" />
+              </button>
+            )}
+            <span className="kbd hidden shrink-0 sm:inline-flex">Esc</span>
           </div>
           <div ref={listRef} className="max-h-[60vh] overflow-y-auto p-2" role="listbox">
             {filtered.length === 0 && <div className="px-3 py-10 text-center text-sm text-ink-2">No matches for “{q}”.</div>}
@@ -160,7 +176,7 @@ export function CommandPalette({ open, onOpenChange, rows, onTheme, onTour }: { 
               const header = idx === 0 || filtered[idx - 1].group !== it.group ? it.group : null;
               return (
                 <div key={it.id}>
-                  {header && <div className="px-3 pt-3 pb-1 text-[11px] font-semibold tracking-wide text-muted uppercase">{header}</div>}
+                  {header && <div className="px-3 pt-3 pb-1 text-[0.6875rem] font-semibold tracking-wide text-muted uppercase">{header}</div>}
                   <button
                     type="button"
                     role="option"
@@ -182,7 +198,7 @@ export function CommandPalette({ open, onOpenChange, rows, onTheme, onTour }: { 
               );
             })}
           </div>
-          <div className="flex items-center gap-4 border-t border-line px-4 py-2 text-xs text-muted">
+          <div className="hidden items-center gap-4 border-t border-line px-4 py-2 text-xs text-muted sm:flex">
             <span className="flex items-center gap-1">
               <span className="kbd">↑</span>
               <span className="kbd">↓</span> move

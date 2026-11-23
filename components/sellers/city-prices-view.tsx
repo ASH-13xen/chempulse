@@ -63,7 +63,7 @@ export function CityPricesView({ board }: { board: SellerBoard }) {
         ))}
         <span className="ml-auto flex items-center gap-2 text-xs text-ink-2">
           Min. sellers per city
-          <select value={minSellers} onChange={(e) => setMinSellers(Number(e.target.value))} className="input h-8 w-auto text-[13px]" aria-label="Minimum sellers">
+          <select value={minSellers} onChange={(e) => setMinSellers(Number(e.target.value))} className="input h-8 w-auto text-[0.8125rem]" aria-label="Minimum sellers">
             {[1, 2, 3, 5].map((n) => (
               <option key={n} value={n}>
                 {n}
@@ -160,7 +160,7 @@ export function CityPricesView({ board }: { board: SellerBoard }) {
           {[-40, -20, 0, 20, 40].map((v) => {
             const f = divergingFill(v, 40, "var(--s2)", "var(--s1)");
             return (
-              <span key={v} className="inline-flex h-6 w-14 items-center justify-center rounded-md text-[10px] font-medium" style={{ background: f.background, color: f.color }}>
+              <span key={v} className="inline-flex h-6 w-14 items-center justify-center rounded-md text-[0.625rem] font-medium" style={{ background: f.background, color: f.color }}>
                 {v > 0 ? "+" : v < 0 ? "−" : ""}
                 {Math.abs(v)}%
               </span>

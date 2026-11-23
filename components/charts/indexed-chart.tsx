@@ -63,7 +63,7 @@ export function IndexedChart({ lines, height = 340, monthly = false }: { lines: 
 
   return (
     <div>
-      <div className="mb-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px]" aria-live="polite">
+      <div className="mb-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.8125rem]" aria-live="polite">
         <span className="text-xs text-muted">{hoverD ? fmtDate(hoverD, monthly ? "month" : "long") : "Latest"}</span>
         {lines.map((l, i) => {
           const v = hoverD ? lookup[i].get(hoverD) : l.points.at(-1)?.v;

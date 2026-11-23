@@ -101,7 +101,7 @@ export function ImportsView({ data }: { data: ImportsData }) {
 
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <StatTile label="Import bill" value={<CountUp value={totalVal} format={(v) => money.crore(v)} />} sub={`${fmtDate(month, "month")}, ${rows.length} chemicals`} info={<p>Total customs value of the chemicals shown, in ₹ crore (1 crore = 10 million) or US$ million, depending on the currency setting.</p>} />
-        <StatTile label="vs same month last year" value={<Change value={pct(totalVal, lyTotal)} size="lg" className="text-[28px]!" />} sub={`${money.crore(lyTotal)} in ${fmtDate(addMonths(month, -12), "month")}`} />
+        <StatTile label="vs same month last year" value={<Change value={pct(totalVal, lyTotal)} size="lg" className="text-[1.75rem]!" />} sub={`${money.crore(lyTotal)} in ${fmtDate(addMonths(month, -12), "month")}`} />
         <StatTile label="Rising imports" value={rows.filter((r) => (r.qtyYoY ?? 0) > 10).length} sub="volume up more than 10% vs last year" tone="up" />
         <StatTile label="Falling imports" value={rows.filter((r) => (r.qtyYoY ?? 0) < -10).length} sub="volume down more than 10% vs last year" tone="down" />
       </div>
@@ -133,7 +133,7 @@ export function ImportsView({ data }: { data: ImportsData }) {
           exportName={`imports-${monthKey(month)}`}
           csv={() => ({ header: ["Chemical", "Tonnes", "Rs crore", "Rs/kg", "Volume YoY %", "Price MoM %", "Price YoY %"], rows: rows.map((r) => [r.name, r.qtyT.toFixed(1), r.valCr.toFixed(2), r.price?.toFixed(2), r.qtyYoY?.toFixed(1), r.priceMoM?.toFixed(1), r.priceYoY?.toFixed(1)]) })}
           actions={
-            <select value={sort} onChange={(e) => setSort(e.target.value as typeof sort)} className="input h-8 w-auto text-[13px]" aria-label="Sort">
+            <select value={sort} onChange={(e) => setSort(e.target.value as typeof sort)} className="input h-8 w-auto text-[0.8125rem]" aria-label="Sort">
               <option value="value">Sort: value</option>
               <option value="qty">Sort: volume</option>
               <option value="yoy">Sort: volume vs LY</option>
@@ -167,7 +167,7 @@ export function ImportsView({ data }: { data: ImportsData }) {
                       <Link href={hrefFor(r.id)} className="inline-flex items-center gap-2 font-medium text-ink hover:text-accent-ink">
                         <CategoryDot slot={categoryById[r.category].slot} />
                         {r.name}
-                        {r.group && <span className="text-[10px] font-semibold text-muted">GROUP</span>}
+                        {r.group && <span className="text-[0.625rem] font-semibold text-muted">GROUP</span>}
                       </Link>
                     </td>
                     <td className="py-2 pr-3 text-right whitespace-nowrap text-ink-2">{fmtTonnes(r.qtyT)}</td>
@@ -196,7 +196,7 @@ const PEEK = 12;
 function MoreToggle({ total, open, onToggle }: { total: number; open: boolean; onToggle: () => void }) {
   if (total <= PEEK) return null;
   return (
-    <button type="button" onClick={onToggle} className="mt-3 text-[13px] font-medium text-accent-ink hover:underline">
+    <button type="button" onClick={onToggle} className="mt-3 text-[0.8125rem] font-medium text-accent-ink hover:underline">
       {open ? "Show fewer" : `Show all ${total}`}
     </button>
   );

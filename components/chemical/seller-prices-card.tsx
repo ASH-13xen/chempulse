@@ -57,7 +57,7 @@ export function SellerPricesCard({ products }: { products: ProductSummary[] }) {
                   {p.markup == null ? "–" : fmtPct(p.markup, 0)}
                 </td>
                 <td className="py-2 text-right">
-                  <Link href={`/products/${p.id}`} className="text-[13px] font-medium whitespace-nowrap text-accent-ink hover:underline">
+                  <Link href={`/products/${p.id}`} className="text-[0.8125rem] font-medium whitespace-nowrap text-accent-ink hover:underline">
                     All sellers →
                   </Link>
                 </td>

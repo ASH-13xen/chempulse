@@ -1,6 +1,6 @@
 "use client";
 
-import { Plus, Search, X } from "lucide-react";
+import { Plus, X } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { addMonths, correlation, periodReturns, rebase, returns, stdev, type VP } from "@/lib/analytics";
 import { categoryById, chemicalById } from "@/lib/catalog";
@@ -13,6 +13,7 @@ import { Card, DataTable } from "../ui/card";
 import { CategoryDot } from "../ui/change";
 import { Reveal } from "../ui/motion";
 import { Segmented } from "../ui/segmented";
+import { SearchField } from "@/components/ui/search-field";
 
 type Loaded = { name: string; unit: string; frequency: "daily" | "monthly"; points: VP[] };
 type Win = "3M" | "6M" | "1Y" | "3Y" | "5Y";
@@ -119,7 +120,7 @@ export function CompareView({ board, initial }: { board: Board; initial: string[
       <div data-reveal className="card space-y-3 p-4">
         <div className="flex flex-wrap items-center gap-2">
           {sel.map((id) => (
-            <span key={id} className="inline-flex h-8 items-center gap-2 rounded-full border border-line bg-surface-2 pr-1 pl-3 text-[13px] font-medium text-ink">
+            <span key={id} className="inline-flex h-8 items-center gap-2 rounded-full border border-line bg-surface-2 pr-1 pl-3 text-[0.8125rem] font-medium text-ink">
               <i aria-hidden className="inline-block h-[3px] w-3.5 rounded-full" style={{ background: `var(--s${slots[id]})` }} />
               {board.rows.find((r) => r.id === id)?.name ?? id}
               <button type="button" onClick={() => remove(id)} aria-label={`Remove ${id}`} className="rounded-full p-1 text-muted hover:bg-surface-3 hover:text-ink">
@@ -132,7 +133,7 @@ export function CompareView({ board, initial }: { board: Board; initial: string[
             <Segmented ariaLabel="Window" value={win} onChange={setWin} options={(Object.keys(MONTHS) as Win[]).map((w) => ({ value: w, label: w }))} />
           </div>
         </div>
-        <div className="flex flex-wrap items-center gap-1.5 text-[13px]">
+        <div className="flex flex-wrap items-center gap-1.5 text-[0.8125rem]">
           <span className="mr-1 text-xs text-muted">Quick sets:</span>
           {PRESETS.map((p) => (
             <button key={p.label} type="button" className="chip h-7! text-xs!" onClick={() => preset(p.ids)}>
@@ -225,15 +226,17 @@ function Picker({ board, exclude, onPick }: { board: Board; exclude: string[]; o
         </button>
       ) : (
         <div className="relative">
-          <Search className="absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2 text-muted" />
-          <input
+          <SearchField
+            size="sm"
+            wrapperClassName="w-64"
             autoFocus
             role="combobox"
             aria-expanded="true"
             aria-controls="compare-options"
+            aria-label="Add a series"
             value={q}
-            onChange={(e) => {
-              setQ(e.target.value);
+            onValueChange={(v) => {
+              setQ(v);
               setActive(0);
             }}
             onKeyDown={(e) => {
@@ -242,10 +245,9 @@ function Picker({ board, exclude, onPick }: { board: Board; exclude: string[]; o
               else if (e.key === "Enter" && options[active]) pick(options[active].id);
               else if (e.key === "Escape") setOpen(false);
             }}
-            placeholder="Type to search…"
-            className="input h-8 w-60 pl-8 text-[13px]"
+            placeholder="Type a chemical or market…"
           />
-          <ul id="compare-options" role="listbox" className="pop absolute top-10 left-0 max-h-80 w-80 overflow-y-auto p-1.5">
+          <ul id="compare-options" role="listbox" className="pop absolute top-10 left-0 z-30 max-h-80 w-80 overflow-y-auto p-1.5">
             {options.map((r, i) => (
               <li key={r.id} role="option" aria-selected={i === active}>
                 <button type="button" onMouseEnter={() => setActive(i)} onClick={() => pick(r.id)} className={`flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-sm ${i === active ? "bg-surface-2" : ""}`}>

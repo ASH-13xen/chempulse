@@ -37,7 +37,7 @@ export function LinesChart({ lines, height = 260, unit = "₹/kg" }: { lines: Li
   }, [lines, vars]);
   return (
     <div>
-      <div className="mb-2 flex flex-wrap items-center gap-x-5 gap-y-1 text-[13px]">
+      <div className="mb-2 flex flex-wrap items-center gap-x-5 gap-y-1 text-[0.8125rem]">
         <span className="text-xs text-muted">{hover ? fmtDate(hover, "long") : "Latest"}</span>
         {lines.map((l) => {
           const v = hover ? l.points.find((p) => p.d === hover)?.v : l.points.at(-1)?.v;

@@ -91,9 +91,9 @@ export function ChemicalView({ detail, quotes, storage, sellerProducts = [] }: {
   return (
     <Reveal className="space-y-6">
       {/* Header */}
-      <div data-reveal className="flex flex-wrap items-start gap-x-6 gap-y-4">
+      <div data-reveal className="flex flex-col gap-4 lg:flex-row lg:items-start lg:gap-6">
         <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2 text-[13px] text-ink-2">
+          <div className="flex items-center gap-2 text-[0.8125rem] text-ink-2">
             <Link href={chem ? "/" : "/markets"} className="inline-flex items-center gap-1 hover:text-ink">
               <ArrowLeft className="size-3.5" /> {chem ? "Overview" : "Markets"}
             </Link>
@@ -107,7 +107,7 @@ export function ChemicalView({ detail, quotes, storage, sellerProducts = [] }: {
             )}
           </div>
           <div className="mt-2 flex flex-wrap items-center gap-3">
-            <h1 className="text-[28px] leading-tight font-semibold tracking-tight text-ink">{row.name}</h1>
+            <h1 className="text-[1.75rem] leading-tight font-semibold tracking-tight text-ink">{row.name}</h1>
             <span className="rounded-md bg-surface-2 px-2 py-0.5 text-sm font-semibold text-ink-2">{row.short}</span>
             <FreqBadge frequency={row.frequency} />
             {row.isGroupData && <span className="rounded-md bg-[color-mix(in_oklab,var(--warn)_20%,transparent)] px-2 py-0.5 text-xs font-semibold text-ink-2">Broad customs group</span>}
@@ -116,7 +116,7 @@ export function ChemicalView({ detail, quotes, storage, sellerProducts = [] }: {
           </div>
           <div className="mt-3 flex flex-wrap items-end gap-x-5 gap-y-3">
             <div>
-              <div className="text-[34px] leading-none font-semibold tracking-tight text-ink">
+              <div className="text-[2.125rem] leading-none font-semibold tracking-tight text-ink">
                 <CountUp value={lastV} format={(v) => formatIn(v, unit)} />
               </div>
               <div className="mt-1.5 text-xs text-muted">
@@ -126,7 +126,7 @@ export function ChemicalView({ detail, quotes, storage, sellerProducts = [] }: {
             <div className="flex flex-wrap gap-1.5">
               {changeKeys.map((k) => (
                 <div key={k} className="rounded-lg border border-line bg-surface px-2.5 py-1.5 text-center">
-                  <div className="text-[10px] font-semibold tracking-wide text-muted uppercase">{PERIOD_SHORT[k]}</div>
+                  <div className="text-[0.625rem] font-semibold tracking-wide text-muted uppercase">{PERIOD_SHORT[k]}</div>
                   <Change value={row.changes[k]} size="sm" />
                 </div>
               ))}
@@ -157,7 +157,7 @@ export function ChemicalView({ detail, quotes, storage, sellerProducts = [] }: {
       </div>
 
       {chem?.hsNote && (
-        <div data-reveal className="rounded-xl border border-[color-mix(in_oklab,var(--warn)_45%,transparent)] bg-[color-mix(in_oklab,var(--warn)_10%,transparent)] px-4 py-3 text-[13px] text-ink-2">
+        <div data-reveal className="rounded-xl border border-[color-mix(in_oklab,var(--warn)_45%,transparent)] bg-[color-mix(in_oklab,var(--warn)_10%,transparent)] px-4 py-3 text-[0.8125rem] text-ink-2">
           <b className="text-ink">About this data:</b> {chem.hsNote}
         </div>
       )}
@@ -412,7 +412,7 @@ function DriversCard({ detail }: { detail: Detail }) {
                   </div>
                   <span className="w-40 text-right text-xs text-ink-2">{corrLabel(l.r)}</span>
                 </div>
-                <div className="mt-0.5 text-[11px] text-muted">
+                <div className="mt-0.5 text-[0.6875rem] text-muted">
                   {l.basis} changes · {l.n} {l.basis === "weekly" ? "weeks" : "months"}
                 </div>
               </li>

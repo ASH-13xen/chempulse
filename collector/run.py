@@ -90,7 +90,7 @@ def run_fred(store, cat, log):
             pts = fred.fetch(m["symbol"], since_for(store, m["id"]))
             r = store.save_points(m["id"], pts)
             add(total, r)
-            log(f"  {m['id']:<14} {len(pts):>5} pts  new {r['new']:>4}  changed {r['updated']:>3}")
+            log(f"  {m['id']:<14} {len(pts):>5} pts  new {r['new']:>4}  changed {r['updated']:>3}  via {fred.last_source}")
         except Exception as e:
             errors.append(f"{m['id']}: {e}")
             log(f"  {m['id']:<14} ERROR {e}")
@@ -194,6 +194,10 @@ def load_env_file(path: Path) -> None:
 
 
 def main() -> int:
+    # Windows consoles default to a legacy code page that cannot print ₹ or ¥
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="replace")
     load_env_file(ROOT / ".env.local")
     ap = argparse.ArgumentParser(description="Collect chemical market data")
     ap.add_argument("--sink", choices=["mongo", "json"], help="where to save (default: mongo if MONGODB_URI is set)")

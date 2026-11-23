@@ -57,12 +57,12 @@ export function Card({
         <header className="flex flex-wrap items-start gap-x-3 gap-y-2 px-5 pt-4 pb-3">
           <div className="min-w-0 flex-1">
             {title && (
-              <h2 className="flex items-center gap-1.5 text-[15px] font-semibold tracking-tight text-ink">
+              <h2 className="flex items-center gap-1.5 text-[0.9375rem] font-semibold tracking-tight text-ink">
                 {title}
                 {info && <InfoTip title={infoTitle ?? (typeof title === "string" ? title : undefined)}>{info}</InfoTip>}
               </h2>
             )}
-            {subtitle && <p className="mt-0.5 text-[13px] text-ink-2">{subtitle}</p>}
+            {subtitle && <p className="mt-0.5 text-[0.8125rem] text-ink-2">{subtitle}</p>}
           </div>
           <div className="flex flex-wrap items-center gap-2" data-noexport="true">
             {actions}
@@ -124,7 +124,8 @@ export function Card({
 /** Simple accessible data table used by "View as table". */
 export function DataTable({ header, rows }: { header: string[]; rows: (string | number | null)[][] }) {
   return (
-    <table className="tnum w-full text-left text-sm">
+    <div className="overflow-x-auto">
+    <table className="tnum w-full text-left text-sm whitespace-nowrap">
       <thead className="sticky top-0 bg-surface text-xs text-muted">
         <tr>
           {header.map((h) => (
@@ -146,18 +147,19 @@ export function DataTable({ header, rows }: { header: string[]; rows: (string | 
         ))}
       </tbody>
     </table>
+    </div>
   );
 }
 
 export function StatTile({ label, value, sub, info, infoTitle, tone }: { label: string; value: ReactNode; sub?: ReactNode; info?: ReactNode; infoTitle?: string; tone?: "up" | "down" }) {
   return (
     <div data-reveal className="card card-hover relative overflow-hidden p-4">
-      <div className="flex items-center gap-1 text-[13px] font-medium text-ink-2">
+      <div className="flex items-center gap-1 text-[0.8125rem] font-medium text-ink-2">
         {label}
         {info && <InfoTip title={infoTitle ?? label}>{info}</InfoTip>}
       </div>
-      <div className={`mt-2 text-[28px] leading-none font-semibold tracking-tight ${tone === "up" ? "text-up-ink" : tone === "down" ? "text-down-ink" : "text-ink"}`}>{value}</div>
-      {sub && <div className="mt-2 text-[13px] text-ink-2">{sub}</div>}
+      <div className={`mt-2 text-[1.75rem] leading-none font-semibold tracking-tight ${tone === "up" ? "text-up-ink" : tone === "down" ? "text-down-ink" : "text-ink"}`}>{value}</div>
+      {sub && <div className="mt-2 text-[0.8125rem] text-ink-2">{sub}</div>}
     </div>
   );
 }
@@ -166,7 +168,7 @@ export function Empty({ title, children }: { title: string; children?: ReactNode
   return (
     <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-line px-6 py-10 text-center">
       <div className="text-sm font-medium text-ink">{title}</div>
-      {children && <div className="mt-1 max-w-sm text-[13px] text-ink-2">{children}</div>}
+      {children && <div className="mt-1 max-w-sm text-[0.8125rem] text-ink-2">{children}</div>}
     </div>
   );
 }

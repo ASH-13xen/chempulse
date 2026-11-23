@@ -23,10 +23,10 @@ export function CompanyView({ company, listings, medians }: { company: Company; 
   return (
     <Reveal className="space-y-6">
       <div data-reveal>
-        <Link href="/suppliers" className="inline-flex items-center gap-1 text-[13px] text-ink-2 hover:text-ink">
+        <Link href="/suppliers" className="inline-flex items-center gap-1 text-[0.8125rem] text-ink-2 hover:text-ink">
           <ArrowLeft className="size-3.5" /> Suppliers
         </Link>
-        <h1 className="mt-2 flex flex-wrap items-center gap-2 text-[28px] font-semibold tracking-tight text-ink">
+        <h1 className="mt-2 flex flex-wrap items-center gap-2 text-[1.75rem] font-semibold tracking-tight text-ink">
           {company.name}
           <StarButton id={company.key} name={company.name} kind="supplier" />
           {company.gstVerified && (

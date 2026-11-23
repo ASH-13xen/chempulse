@@ -32,7 +32,7 @@ export default function LoginPage() {
           </span>
           <div>
             <h1 className="text-lg font-semibold text-ink">ChemPulse</h1>
-            <p className="text-[13px] text-ink-2">Chemical price trends</p>
+            <p className="text-[0.8125rem] text-ink-2">Chemical price trends</p>
           </div>
         </div>
         <label className="mt-7 block text-sm font-medium text-ink">
@@ -42,7 +42,7 @@ export default function LoginPage() {
             <input type="password" autoFocus autoComplete="current-password" className="input h-11 pl-9" value={pw} onChange={(e) => setPw(e.target.value)} required />
           </div>
         </label>
-        {err && <p className="mt-2 text-[13px] text-down-ink">{err}</p>}
+        {err && <p className="mt-2 text-[0.8125rem] text-down-ink">{err}</p>}
         <button type="submit" disabled={busy} className="btn btn-primary mt-5 h-11 w-full justify-center">
           {busy ? "Signing in…" : "Sign in"}
         </button>

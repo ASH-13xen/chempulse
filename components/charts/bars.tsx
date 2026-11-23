@@ -92,7 +92,7 @@ export function ColumnChart({ data, format, diverging = false, slot = 1, height 
           {ticks.map((t) => (
             <g key={t}>
               <line x1={pad.l} x2={width - pad.r} y1={y(t)} y2={y(t)} stroke={t === 0 ? "var(--axis)" : "var(--grid)"} strokeWidth={1} />
-              <text x={pad.l - 8} y={y(t)} dy="0.32em" textAnchor="end" className="tnum fill-[var(--muted)] text-[11px]">
+              <text x={pad.l - 8} y={y(t)} dy="0.32em" textAnchor="end" className="tnum fill-[var(--muted)] text-[0.6875rem]">
                 {fmtAxis(t)}
               </text>
             </g>
@@ -105,12 +105,12 @@ export function ColumnChart({ data, format, diverging = false, slot = 1, height 
               <g key={d.label + i}>
                 {v != null && <path data-bar d={barPath(x, y(0), y(v), bw)} fill={color} />}
                 {capLabels && v != null && bw >= 14 && (
-                  <text x={x + bw / 2} y={v >= 0 ? y(v) - 5 : y(v) + 12} textAnchor="middle" className="tnum fill-[var(--ink-2)] text-[10px] font-medium">
+                  <text x={x + bw / 2} y={v >= 0 ? y(v) - 5 : y(v) + 12} textAnchor="middle" className="tnum fill-[var(--ink-2)] text-[0.625rem] font-medium">
                     {format(v)}
                   </text>
                 )}
                 {i % every === 0 && (
-                  <text x={x + bw / 2} y={height - 8} textAnchor="middle" className="fill-[var(--muted)] text-[11px]">
+                  <text x={x + bw / 2} y={height - 8} textAnchor="middle" className="fill-[var(--muted)] text-[0.6875rem]">
                     {d.label}
                   </text>
                 )}
@@ -172,7 +172,7 @@ export function RankedBars({ data, diverging = false, slot = 1, labelWidth = 150
         const color = d.color ?? (diverging ? (d.value >= 0 ? "var(--up)" : "var(--down)") : `var(--s${d.slot ?? slot})`);
         return (
           <div key={d.id} className="group grid min-w-0 items-center gap-3 rounded-md px-1 py-0.5 hover:bg-surface-2" style={{ gridTemplateColumns: `minmax(0, ${labelWidth}px) minmax(40px, 1fr) auto` }} title={typeof d.detail === "string" ? d.detail : undefined}>
-            <div className="truncate text-[13px] text-ink-2">{d.label}</div>
+            <div className="truncate text-[0.8125rem] text-ink-2">{d.label}</div>
             <div className="relative h-6 min-w-0">
               {hasNeg && <span aria-hidden className="absolute top-0 bottom-0 left-1/2 w-px bg-[var(--axis)]" />}
               <div

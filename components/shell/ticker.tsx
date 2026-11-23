@@ -48,7 +48,7 @@ export function Ticker({ rows }: { rows: Row[] }) {
               href={hrefFor(r.id)}
               tabIndex={i >= items.length ? -1 : 0}
               aria-hidden={i >= items.length}
-              className="group flex items-center gap-2 rounded-md px-3 py-0.5 text-[13px] whitespace-nowrap hover:bg-surface-2"
+              className="group flex items-center gap-2 rounded-md px-3 py-0.5 text-[0.8125rem] whitespace-nowrap hover:bg-surface-2"
             >
               <span className="font-semibold text-ink group-hover:text-accent-ink">{r.short}</span>
               <span className="tnum text-ink-2">{money.fmt(r.last, r.unit)}</span>

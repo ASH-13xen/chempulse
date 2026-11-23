@@ -109,7 +109,7 @@ export function HeatLegend({ cap, label }: { cap: number; label: string }) {
       <span>{label}</span>
       <div className="flex overflow-hidden rounded-md">
         {steps.map((s) => (
-          <span key={s} className="tnum flex h-6 w-12 items-center justify-center text-[10px] font-medium" style={{ background: divergingFill(s * cap, cap).background, color: divergingFill(s * cap, cap).color }}>
+          <span key={s} className="tnum flex h-6 w-12 items-center justify-center text-[0.625rem] font-medium" style={{ background: divergingFill(s * cap, cap).background, color: divergingFill(s * cap, cap).color }}>
             {s === 0 ? "0" : `${s > 0 ? "+" : "−"}${Math.abs(s * cap).toFixed(0)}%`}
           </span>
         ))}

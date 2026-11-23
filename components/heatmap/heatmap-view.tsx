@@ -73,7 +73,7 @@ export function HeatmapView({ board, heat }: { board: Board; heat: HeatData }) {
             { value: "all", label: "Both" },
           ]}
         />
-        <select value={sort} onChange={(e) => setSort(e.target.value as Sort)} className="input h-8 w-auto text-[13px]" aria-label="Sort rows">
+        <select value={sort} onChange={(e) => setSort(e.target.value as Sort)} className="input h-8 w-auto text-[0.8125rem]" aria-label="Sort rows">
           <option value="category">Sort: category</option>
           <option value="name">Sort: A → Z</option>
           <option value="latest">Sort: latest change</option>
@@ -88,7 +88,7 @@ export function HeatmapView({ board, heat }: { board: Board; heat: HeatData }) {
         </div>
       </div>
       {mode === "weekly" && scope !== "market" && (
-        <p data-reveal className="text-[13px] text-ink-2">
+        <p data-reveal className="text-[0.8125rem] text-ink-2">
           Weekly view shows chemicals with daily prices. Switch to monthly to include chemicals that only have India import data.
         </p>
       )}
@@ -115,7 +115,7 @@ export function HeatmapView({ board, heat }: { board: Board; heat: HeatData }) {
             name: x.r.name,
             href: hrefFor(x.r.id),
             slot: x.r.category ? categoryById[x.r.category].slot : undefined,
-            tag: x.r.isGroupData || x.r.noisy ? <span className="text-[10px] font-semibold text-muted">{x.r.isGroupData ? "GROUP" : "NOISY"}</span> : undefined,
+            tag: x.r.isGroupData || x.r.noisy ? <span className="text-[0.625rem] font-semibold text-muted">{x.r.isGroupData ? "GROUP" : "NOISY"}</span> : undefined,
             cells: x.cells,
           }))}
           unitLabel={mode === "weekly" ? "week-on-week change" : "month-on-month change"}

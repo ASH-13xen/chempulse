@@ -1,6 +1,6 @@
 "use client";
 
-import { BadgeCheck, Download, FileDown, Plus, Search, Star, Store, X } from "lucide-react";
+import { BadgeCheck, Download, FileDown, Plus, Star, Store, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -17,6 +17,7 @@ import { InfoTip } from "../ui/info-tip";
 import { Reveal } from "../ui/motion";
 import { PriceText, RangeBar } from "../ui/row-bits";
 import { Sparkline } from "../ui/sparkline";
+import { SearchField } from "@/components/ui/search-field";
 
 const KIND_LABEL: Record<WatchKind, string> = { chem: "Chemicals", market: "Markets", product: "Seller prices", supplier: "Suppliers" };
 
@@ -107,7 +108,7 @@ export function WatchlistView({ view }: { view: WatchView }) {
       ))}
 
       {view.missing.length > 0 && (kind === "all" || view.missing.some((m) => m.t === kind)) && (
-        <div className="card p-4 text-[13px] text-ink-2">
+        <div className="card p-4 text-[0.8125rem] text-ink-2">
           <b className="text-ink">Saved but no current data:</b>{" "}
           {view.missing.map((m) => (
             <span key={`${m.t}:${m.id}`} className="mr-2 inline-flex items-center gap-1 rounded bg-surface-2 px-1.5 py-0.5">
@@ -157,9 +158,9 @@ function Section({ s, medians, onRemove }: { s: WatchSection; medians: Record<st
                     ["Mumbai", mu?.median ?? null, mu?.credible ?? 0],
                   ].map(([label, v, cnt]) => (
                     <div key={label as string} className="rounded-lg bg-surface-2 px-2 py-2">
-                      <div className="text-[11px] text-muted">{label as string}</div>
+                      <div className="text-[0.6875rem] text-muted">{label as string}</div>
                       <div className="tnum text-base font-semibold text-ink">{v != null ? money.kg(v as number, 0) : "–"}</div>
-                      <div className="text-[10px] text-muted">{cnt as number} sellers</div>
+                      <div className="text-[0.625rem] text-muted">{cnt as number} sellers</div>
                     </div>
                   ))}
                 </div>
@@ -182,7 +183,7 @@ function Section({ s, medians, onRemove }: { s: WatchSection; medians: Record<st
               {c.regions.join(", ")} · {[c.types.manufacturer && "Manufacturer", (c.types.trader || c.types.distributor) && "Trader", c.types.exporter && "Exporter"].filter(Boolean).join(" · ") || "type not stated"}
               {c.rating ? ` · ★ ${c.rating.toFixed(1)}` : ""}
             </div>
-            <table className="tnum mt-3 w-full text-[13px]">
+            <table className="tnum mt-3 w-full text-[0.8125rem]">
               <tbody>
                 {listings.slice(0, 6).map((l) => {
                   const m = medians[l.product];
@@ -191,7 +192,7 @@ function Section({ s, medians, onRemove }: { s: WatchSection; medians: Record<st
                     <tr key={l.id} className="border-t border-line/60">
                       <td className="py-1.5 pr-2 text-ink-2">
                         <span className="line-clamp-1">{productById[l.product]?.name ?? l.product}</span>
-                        <span className="text-[11px] text-muted">{l.city}</span>
+                        <span className="text-[0.6875rem] text-muted">{l.city}</span>
                       </td>
                       <td className="py-1.5 text-right font-semibold whitespace-nowrap text-ink">{l.priceKg != null ? `${money.kg(l.priceKg, 0)}/kg` : "on request"}</td>
                       <td className={`py-1.5 pl-2 text-right text-xs whitespace-nowrap ${vs == null ? "text-muted" : vs > 0 ? "text-down-ink" : "text-up-ink"}`}>{vs == null ? "" : fmtPct(vs, 0)}</td>
@@ -201,7 +202,7 @@ function Section({ s, medians, onRemove }: { s: WatchSection; medians: Record<st
               </tbody>
             </table>
             {listings.length > 6 && <div className="mt-1 text-xs text-muted">+{listings.length - 6} more listings</div>}
-            <div className="mt-2 text-[11px] text-muted">Last seen {fmtDate(c.lastSeen.slice(0, 10))}</div>
+            <div className="mt-2 text-[0.6875rem] text-muted">Last seen {fmtDate(c.lastSeen.slice(0, 10))}</div>
           </div>
         ))}
       </div>
@@ -244,7 +245,7 @@ function RowCard({ r, onRemove }: { r: Row; onRemove: () => void }) {
           <div className="flex-1">
             <RangeBar pos={r.rangePos} lo={r.lo52} hi={r.hi52} unit={r.unit} compact />
           </div>
-          <span className="text-[11px] text-muted">{r.frequency === "monthly" ? fmtDate(r.lastDate, "month") : fmtDate(r.lastDate)}</span>
+          <span className="text-[0.6875rem] text-muted">{r.frequency === "monthly" ? fmtDate(r.lastDate, "month") : fmtDate(r.lastDate)}</span>
         </div>
       </Link>
     </div>
@@ -298,12 +299,12 @@ function AddBox({ view, onAdded }: { view: WatchView; onAdded: () => void }) {
   return (
     <div ref={box} className="relative">
       <div className="flex items-center gap-2">
-        <div className="relative flex-1">
-          <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted" />
-          <input
+        <SearchField
+            size="lg"
+            wrapperClassName="flex-1"
             value={q}
-            onChange={(e) => {
-              setQ(e.target.value);
+            onValueChange={(v) => {
+              setQ(v);
               setOpen(true);
               setActive(0);
             }}
@@ -315,19 +316,17 @@ function AddBox({ view, onAdded }: { view: WatchView; onAdded: () => void }) {
               else if (e.key === "Escape") setOpen(false);
             }}
             placeholder="Add to watchlist: search a chemical, seller product, market or supplier…"
-            className="input h-11 pl-9"
             aria-label="Add to watchlist"
             role="combobox"
             aria-expanded={open && results.length > 0}
             aria-controls="watch-options"
           />
-        </div>
         <InfoTip title="What can I add?">
           <p><b>Chemicals</b>: market price, trend and import data. <b>Seller prices</b>: median asking price by city for a product. <b>Markets</b>: crude, gas, rupee, China futures. <b>Suppliers</b>: a company&apos;s listings and prices.</p>
         </InfoTip>
       </div>
       {open && results.length > 0 && (
-        <ul id="watch-options" role="listbox" className="pop absolute top-12 right-0 left-0 z-30 max-h-96 overflow-y-auto p-1.5">
+        <ul id="watch-options" role="listbox" className="pop absolute top-[54px] right-0 left-0 z-30 max-h-96 overflow-y-auto p-1.5">
           {results.map((o, i) => {
             const on = wl.has(o.t, o.id);
             return (

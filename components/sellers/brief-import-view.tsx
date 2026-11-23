@@ -36,7 +36,7 @@ export function BriefImportView({ briefs, storage }: { briefs: BriefDoc[]; stora
   return (
     <Reveal className="mx-auto max-w-[1200px] space-y-6">
       <div data-reveal>
-        <Link href="/brief" className="inline-flex items-center gap-1 text-[13px] text-ink-2 hover:text-ink">
+        <Link href="/brief" className="inline-flex items-center gap-1 text-[0.8125rem] text-ink-2 hover:text-ink">
           <ArrowLeft className="size-3.5" /> Daily brief
         </Link>
         <h1 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Import a market brief</h1>
@@ -53,11 +53,11 @@ export function BriefImportView({ briefs, storage }: { briefs: BriefDoc[]; stora
             setPreview(null);
           }}
           placeholder={"Chemicals Market Brief: Chennai & Mumbai\n21 Nov 2026 (IST) | …\n\n1. Solvents\nChennai (source: …)\nCompany\tProduct\tPrice\nShri Ram Chemicals, Chennai\tToluene 100%\tRs 92/kg"}
-          className="input h-64 py-3 font-mono text-[12px] leading-relaxed"
+          className="input h-64 py-3 font-mono text-[0.75rem] leading-relaxed"
           aria-label="Brief text"
         />
         <div className="mt-3 flex flex-wrap items-center gap-2">
-          <label className="flex items-center gap-2 text-[13px] text-ink-2">
+          <label className="flex items-center gap-2 text-[0.8125rem] text-ink-2">
             Prices came from
             <select value={source} onChange={(e) => setSource(e.target.value as "indiamart" | "tradeindia")} className="input h-9 w-auto">
               <option value="indiamart">IndiaMART</option>
@@ -84,9 +84,9 @@ export function BriefImportView({ briefs, storage }: { briefs: BriefDoc[]; stora
           >
             <ClipboardPaste className="size-4" /> Paste from clipboard
           </button>
-          {storage !== "mongo" && <span className="text-[13px] text-ink-2">Saving needs MongoDB.</span>}
+          {storage !== "mongo" && <span className="text-[0.8125rem] text-ink-2">Saving needs MongoDB.</span>}
           {msg && (
-            <span className={`inline-flex items-center gap-1.5 text-[13px] ${msg.ok ? "text-up-ink" : "text-down-ink"}`}>
+            <span className={`inline-flex items-center gap-1.5 text-[0.8125rem] ${msg.ok ? "text-up-ink" : "text-down-ink"}`}>
               {msg.ok && <CheckCircle2 className="size-4" />} {msg.text}
             </span>
           )}
@@ -96,7 +96,7 @@ export function BriefImportView({ briefs, storage }: { briefs: BriefDoc[]; stora
       {preview && (
         <Card title={`Preview: ${preview.rows.length} seller rows found`} subtitle={`${preview.title} · dated ${fmtDate(preview.date, "long")} · ${matched} matched to a product, ${preview.rows.length - matched} filed under “Other …”`} png={false}>
           <div className="max-h-[560px] overflow-auto">
-            <table className="tnum w-full text-[13px]">
+            <table className="tnum w-full text-[0.8125rem]">
               <thead className="sticky top-0 bg-surface text-xs text-muted">
                 <tr className="border-b border-line">
                   <th className="py-2 pr-3 text-left font-medium">City</th>
@@ -117,7 +117,7 @@ export function BriefImportView({ briefs, storage }: { briefs: BriefDoc[]; stora
                     <td className={`py-1.5 pr-3 ${r.matched ? "text-ink" : "text-muted"}`}>{r.productName}</td>
                     <td className="py-1.5 pr-3 text-right whitespace-nowrap text-ink-2">{r.priceText}</td>
                     <td className="py-1.5 pr-3 text-right font-semibold whitespace-nowrap text-ink">{r.priceKg != null ? `₹${fmtNum(r.priceKg)}` : "–"}</td>
-                    <td className="py-1.5 text-[12px] text-ink-2">
+                    <td className="py-1.5 text-[0.75rem] text-ink-2">
                       {r.flags.join(", ")}
                       {r.note && <div className="text-muted">{r.note}</div>}
                     </td>
@@ -138,11 +138,11 @@ export function BriefImportView({ briefs, storage }: { briefs: BriefDoc[]; stora
                 <details>
                   <summary className="flex cursor-pointer flex-wrap items-center justify-between gap-2 text-sm">
                     <span className="font-medium text-ink">{b.title}</span>
-                    <span className="text-[13px] text-ink-2">
+                    <span className="text-[0.8125rem] text-ink-2">
                       {fmtDate(b.date, "long")} · {b.rows} rows · imported {fmtDate(b.importedAt.slice(0, 10))}
                     </span>
                   </summary>
-                  <pre className="mt-2 max-h-[420px] overflow-auto rounded-lg bg-surface-2 p-3 text-[12px] whitespace-pre-wrap text-ink-2">{b.text}</pre>
+                  <pre className="mt-2 max-h-[420px] overflow-auto rounded-lg bg-surface-2 p-3 text-[0.75rem] whitespace-pre-wrap text-ink-2">{b.text}</pre>
                 </details>
               </li>
             ))}

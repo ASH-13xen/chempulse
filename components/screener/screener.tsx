@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDown, ArrowUp, Columns3, Download, RotateCcw, Search } from "lucide-react";
+import { ArrowDown, ArrowUp, Columns3, Download, RotateCcw, SlidersHorizontal } from "lucide-react";
 import { DropdownMenu } from "radix-ui";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
@@ -17,6 +17,7 @@ import { Reveal } from "../ui/motion";
 import { PriceText, RangeBar, StarButton } from "../ui/row-bits";
 import { Segmented } from "../ui/segmented";
 import { Sparkline } from "../ui/sparkline";
+import { SearchField } from "@/components/ui/search-field";
 
 type ColKey = "price" | "d1" | "w1" | "m1" | "m3" | "y1" | "ytd" | "trend" | "strength" | "typical" | "range" | "spark" | "impPrice" | "impYoY" | "asOf";
 
@@ -82,6 +83,8 @@ export function Screener({ board }: { board: Board }) {
   const [unusual, setUnusual] = useState(false);
   const [watch, setWatch] = useState(false);
   const [hideNoisy, setHideNoisy] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(false); // phones only; always shown from sm up
+  const activeFilters = (scope !== "chemical" ? 1 : 0) + (freq !== "all" ? 1 : 0) + (trend !== "all" ? 1 : 0) + cats.length + (unusual ? 1 : 0) + (watch ? 1 : 0) + (hideNoisy ? 1 : 0);
   const [sort, setSort] = useState<{ key: ColKey | "name"; dir: 1 | -1 }>({ key: "m1", dir: -1 });
   const [cols, setCols] = useState<Set<ColKey>>(() => new Set(COLS.filter((c) => c.defaultOn).map((c) => c.key)));
 
@@ -204,10 +207,13 @@ export function Screener({ board }: { board: Board }) {
       {/* Filter row */}
       <div data-reveal className="card space-y-3 p-4">
         <div className="flex flex-wrap items-center gap-2">
-          <div className="relative w-full sm:w-64">
-            <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted" />
-            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Filter by name…" className="input pl-9" aria-label="Filter by name" />
+          <div className="flex w-full items-center gap-2 sm:w-auto">
+            <SearchField value={q} onValueChange={setQ} placeholder="Filter by name…" aria-label="Filter by name" wrapperClassName="min-w-0 flex-1 sm:w-64 sm:flex-none" />
+            <button type="button" className="btn shrink-0 sm:hidden" aria-expanded={filtersOpen} onClick={() => setFiltersOpen(!filtersOpen)}>
+              <SlidersHorizontal className="size-4" /> Filters{activeFilters ? ` (${activeFilters})` : ""}
+            </button>
           </div>
+          <div className={`${filtersOpen ? "flex" : "hidden"} flex-wrap items-center gap-2 sm:contents`}>
           <Segmented
             ariaLabel="Show"
             value={scope}
@@ -239,8 +245,9 @@ export function Screener({ board }: { board: Board }) {
               { value: "flat", label: "→ Sideways" },
             ]}
           />
+          </div>
         </div>
-        <div className="flex flex-wrap items-center gap-1.5">
+        <div className={`${filtersOpen ? "flex" : "hidden"} flex-wrap items-center gap-1.5 sm:flex`}>
           {categories.map((c) => (
             <button key={c.id} type="button" className="chip" data-on={cats.includes(c.id)} onClick={() => setCats((x) => (x.includes(c.id) ? x.filter((y) => y !== c.id) : [...x, c.id]))}>
               <CategoryDot slot={c.slot} /> {c.name}
@@ -256,14 +263,14 @@ export function Screener({ board }: { board: Board }) {
           <button type="button" className="chip" data-on={hideNoisy} onClick={() => setHideNoisy(!hideNoisy)} title="Hide broad customs groups and noisy import prices">
             Hide noisy data
           </button>
-          <button type="button" onClick={reset} className="ml-auto inline-flex items-center gap-1 text-[13px] text-ink-2 hover:text-ink">
+          <button type="button" onClick={reset} className="ml-auto inline-flex items-center gap-1 text-[0.8125rem] text-ink-2 hover:text-ink">
             <RotateCcw className="size-3.5" /> Reset
           </button>
         </div>
       </div>
 
       <div data-reveal className="card overflow-hidden">
-        <div className="flex items-center justify-between px-4 py-2.5 text-[13px] text-ink-2">
+        <div className="flex items-center justify-between px-4 py-2.5 text-[0.8125rem] text-ink-2">
           <span>
             Showing <b className="text-ink">{rows.length}</b> of {total}
           </span>
@@ -285,12 +292,12 @@ export function Screener({ board }: { board: Board }) {
                     <StarButton id={r.id} name={r.name} kind={r.type === "market" ? "market" : "chem"} />
                   </td>
                   <td className="sticky left-10 z-10 border-b border-line/70 bg-surface px-3 py-2.5 group-hover:bg-surface-2">
-                    <div className="flex min-w-[220px] items-center gap-2">
+                    <div className="flex min-w-[9.5rem] items-center gap-2 sm:min-w-[220px]">
                       {r.category ? <CategoryDot slot={categoryById[r.category].slot} /> : <span className="size-2.5 rounded-sm bg-[var(--muted)]" />}
-                      <span className="font-medium whitespace-nowrap text-ink group-hover:text-accent-ink">{r.name}</span>
+                      <span className="font-medium text-ink group-hover:text-accent-ink sm:whitespace-nowrap">{r.name}</span>
                       <FreqBadge frequency={r.frequency} />
-                      {r.isGroupData && <span className="text-[10px] font-semibold text-muted">GROUP</span>}
-                      {r.noisy && !r.isGroupData && <span className="text-[10px] font-semibold text-muted">NOISY</span>}
+                      {r.isGroupData && <span className="text-[0.625rem] font-semibold text-muted">GROUP</span>}
+                      {r.noisy && !r.isGroupData && <span className="text-[0.625rem] font-semibold text-muted">NOISY</span>}
                       {r.unusual && <span title="Unusual latest move">⚡</span>}
                     </div>
                   </td>

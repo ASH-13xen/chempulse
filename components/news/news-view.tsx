@@ -1,6 +1,6 @@
 "use client";
 
-import { ExternalLink, Search } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { categories, categoryById, chemicalById, hrefFor } from "@/lib/catalog";
@@ -8,6 +8,7 @@ import { fmtDate } from "@/lib/format";
 import type { NewsItem } from "@/lib/types";
 import { CategoryDot } from "../ui/change";
 import { Reveal } from "../ui/motion";
+import { SearchField } from "@/components/ui/search-field";
 
 export function NewsView({ news }: { news: NewsItem[] }) {
   const [q, setQ] = useState("");
@@ -40,11 +41,8 @@ export function NewsView({ news }: { news: NewsItem[] }) {
         <p className="mt-1 max-w-3xl text-sm text-ink-2">Headlines from the last 30 days that name a tracked chemical together with a price, supply, plant or trade word. Read every 6 hours from Google News (India edition).</p>
       </div>
       <div data-reveal className="card flex flex-wrap items-center gap-2 p-4">
-        <div className="relative w-full sm:w-72">
-          <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted" />
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search headlines…" className="input pl-9" aria-label="Search headlines" />
-        </div>
-        <select value={cat} onChange={(e) => (setCat(e.target.value), setChem("all"))} className="input h-9 w-auto" aria-label="Category">
+        <SearchField value={q} onValueChange={setQ} placeholder="Search headlines…" aria-label="Search headlines" wrapperClassName="w-full sm:w-72" />
+        <select value={cat} onChange={(e) => (setCat(e.target.value), setChem("all"))} className="input h-9 min-w-0 flex-1 sm:w-auto sm:flex-none" aria-label="Category">
           <option value="all">All categories</option>
           {categories.map((c) => (
             <option key={c.id} value={c.id}>
@@ -52,7 +50,7 @@ export function NewsView({ news }: { news: NewsItem[] }) {
             </option>
           ))}
         </select>
-        <select value={chem} onChange={(e) => setChem(e.target.value)} className="input h-9 w-auto" aria-label="Chemical">
+        <select value={chem} onChange={(e) => setChem(e.target.value)} className="input h-9 min-w-0 flex-1 sm:w-auto sm:flex-none" aria-label="Chemical">
           <option value="all">All chemicals</option>
           {Object.values(chemicalById)
             .filter((c) => cat === "all" || c.category === cat)
@@ -62,17 +60,17 @@ export function NewsView({ news }: { news: NewsItem[] }) {
               </option>
             ))}
         </select>
-        <span className="ml-auto text-[13px] text-ink-2">{list.length} headlines</span>
+        <span className="ml-auto text-[0.8125rem] text-ink-2">{list.length} headlines</span>
       </div>
       {byDay.map(([day, items]) => (
         <section key={day} data-reveal className="space-y-2">
-          <h2 className="sticky top-[112px] z-10 bg-page/90 py-1 text-xs font-semibold tracking-wide text-muted uppercase backdrop-blur">{fmtDate(day, "long")}</h2>
+          <h2 className="sticky top-[7rem] z-10 bg-page/90 py-1 text-xs font-semibold tracking-wide text-muted uppercase backdrop-blur">{fmtDate(day, "long")}</h2>
           <div className="card divide-y divide-[var(--line)]">
             {items.map((n) => {
               const c = chemicalById[n.chem];
               return (
-                <div key={n.id} className="flex items-start gap-4 px-5 py-3.5">
-                  <Link href={hrefFor(c.id)} className="mt-0.5 inline-flex w-44 shrink-0 items-center gap-2 text-[13px] font-medium text-ink-2 hover:text-accent-ink">
+                <div key={n.id} className="flex flex-col gap-1 px-4 py-3 sm:flex-row sm:items-start sm:gap-4 sm:px-5 sm:py-3.5">
+                  <Link href={hrefFor(c.id)} className="inline-flex min-w-0 shrink-0 items-center gap-2 sm:mt-0.5 sm:w-44 text-[0.8125rem] font-medium text-ink-2 hover:text-accent-ink">
                     <CategoryDot slot={categoryById[c.category].slot} />
                     <span className="truncate">{c.name}</span>
                   </Link>
