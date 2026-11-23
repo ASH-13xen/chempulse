@@ -1,0 +1,1237 @@
+{
+  "_about": "Seller-tracked products. Each product links to a chemical (or null for seller-only items like thinners). 'include'/'exclude' are matched against listing titles (case-insensitive regex). 'im'/'ti' are candidate page names on IndiaMART (dir.indiamart.com/impcat/<slug>.html) and TradeIndia (/manufacturers/<slug>.html); the first that works is kept in 'slugs'.",
+  "products": [
+    {
+      "id": "toluene",
+      "name": "Toluene",
+      "chem": "toluene",
+      "category": "solvents",
+      "density": 0.867,
+      "include": [
+        "toluen",
+        "toluol"
+      ],
+      "exclude": [
+        "fluoro",
+        "chloro",
+        "bromo",
+        "nitro",
+        "sulfon",
+        "sulphon",
+        "hydroxy",
+        "\\bbht\\b",
+        "diisocyan",
+        "\\btdi\\b",
+        "toluidin",
+        "free",
+        "index",
+        "bismaleimide",
+        "tosyl",
+        "amine",
+        "benzyl"
+      ],
+      "im": [
+        "toluene"
+      ],
+      "ti": [
+        "toluene"
+      ]
+    },
+    {
+      "id": "xylene",
+      "name": "Xylene",
+      "chem": "xylene",
+      "category": "solvents",
+      "density": 0.864,
+      "include": [
+        "xylen",
+        "xylol"
+      ],
+      "exclude": [
+        "para.?xylene",
+        "p-xylene",
+        "sulfon",
+        "sulphon",
+        "xylenol",
+        "cyanol",
+        "free",
+        "ortho",
+        "meta",
+        "\\bo-xylene",
+        "\\bm-xylene",
+        "tetrachloro",
+        "chloro",
+        "nitro",
+        "dimethyl"
+      ],
+      "im": [],
+      "ti": [
+        "xylene"
+      ]
+    },
+    {
+      "id": "acetone",
+      "name": "Acetone",
+      "chem": "acetone",
+      "category": "solvents",
+      "density": 0.784,
+      "include": [
+        "acetone"
+      ],
+      "exclude": [
+        "cyanohydrin",
+        "oxime",
+        "acetonitrile",
+        "free",
+        "nail",
+        "remover"
+      ],
+      "im": [
+        "acetone"
+      ],
+      "ti": [
+        "acetone"
+      ]
+    },
+    {
+      "id": "ipa",
+      "name": "Isopropyl alcohol (IPA)",
+      "chem": "ipa",
+      "category": "solvents",
+      "density": 0.786,
+      "include": [
+        "isopropyl alcohol",
+        "isopropanol",
+        "\\bipa\\b",
+        "iso propyl alcohol",
+        "2-propanol"
+      ],
+      "exclude": [
+        "myristate",
+        "palmitate",
+        "wipe",
+        "swab",
+        "sanitizer",
+        "sanitiser",
+        "amine",
+        "ether"
+      ],
+      "im": [
+        "isopropyl-alcohol",
+        "isopropanol"
+      ],
+      "ti": [
+        "isopropyl-alcohol"
+      ]
+    },
+    {
+      "id": "mek",
+      "name": "Methyl ethyl ketone (MEK)",
+      "chem": "mek",
+      "category": "solvents",
+      "density": 0.805,
+      "include": [
+        "methyl ethyl ketone",
+        "\\bmek\\b",
+        "butanone"
+      ],
+      "exclude": [
+        "oxime",
+        "peroxide",
+        "mekp"
+      ],
+      "im": [],
+      "ti": [
+        "methyl-ethyl-ketone"
+      ]
+    },
+    {
+      "id": "methanol",
+      "name": "Methanol",
+      "chem": "methanol",
+      "category": "solvents",
+      "density": 0.792,
+      "include": [
+        "methanol",
+        "methyl alcohol"
+      ],
+      "exclude": [
+        "denatur",
+        "fuel"
+      ],
+      "im": [
+        "methanol",
+        "methyl-alcohol"
+      ],
+      "ti": [
+        "methanol"
+      ]
+    },
+    {
+      "id": "ethyl-acetate",
+      "name": "Ethyl acetate",
+      "chem": "ethyl-acetate",
+      "category": "solvents",
+      "density": 0.902,
+      "include": [
+        "ethyl acetate"
+      ],
+      "exclude": [
+        "butyl",
+        "vinyl",
+        "aceto"
+      ],
+      "im": [
+        "ethyl-acetate"
+      ],
+      "ti": [
+        "ethyl-acetate"
+      ]
+    },
+    {
+      "id": "thinner",
+      "name": "Thinners (general / lacquer)",
+      "chem": null,
+      "category": "solvents",
+      "density": 0.85,
+      "include": [
+        "thinner"
+      ],
+      "exclude": [
+        "machine",
+        "dispenser",
+        "\\bnc\\b",
+        "n\\.c",
+        "nitro",
+        "\\bpu\\b",
+        "polyurethane"
+      ],
+      "im": [
+        "lacquer-thinner"
+      ],
+      "ti": [
+        "thinners",
+        "paint-thinners"
+      ]
+    },
+    {
+      "id": "nc-thinner",
+      "name": "NC thinner",
+      "chem": null,
+      "category": "solvents",
+      "density": 0.85,
+      "include": [
+        "\\bnc\\b.*thinner",
+        "n\\.c\\.? thinner",
+        "nitro.?cellulose thinner"
+      ],
+      "exclude": [
+        "machine"
+      ],
+      "im": [
+        "nc-thinner"
+      ],
+      "ti": [
+        "nc-thinner"
+      ]
+    },
+    {
+      "id": "pu-thinner",
+      "name": "PU thinner",
+      "chem": null,
+      "category": "solvents",
+      "density": 0.87,
+      "include": [
+        "\\bpu\\b.*thinner",
+        "polyurethane thinner"
+      ],
+      "exclude": [
+        "machine"
+      ],
+      "im": [],
+      "ti": [
+        "pu-thinner"
+      ]
+    },
+    {
+      "id": "mto",
+      "name": "Mineral turpentine oil (MTO)",
+      "chem": null,
+      "category": "solvents",
+      "density": 0.78,
+      "include": [
+        "mineral turpentine",
+        "\\bmto\\b",
+        "white spirit"
+      ],
+      "exclude": [],
+      "im": [
+        "mineral-turpentine-oil"
+      ],
+      "ti": [
+        "mineral-turpentine-oil"
+      ]
+    },
+    {
+      "id": "turpentine-oil",
+      "name": "Turpentine oil",
+      "chem": null,
+      "category": "solvents",
+      "density": 0.86,
+      "include": [
+        "turpentine"
+      ],
+      "exclude": [
+        "mineral",
+        "\\bmto\\b"
+      ],
+      "im": [
+        "turpentine-oil"
+      ],
+      "ti": [
+        "turpentine-oil"
+      ]
+    },
+    {
+      "id": "pp-granules",
+      "name": "PP granules",
+      "chem": "pp",
+      "category": "polymers",
+      "include": [
+        "polypropylene",
+        "\\bpp\\b"
+      ],
+      "exclude": [
+        "bag",
+        "sack",
+        "fabric",
+        "rope",
+        "sheet",
+        "film",
+        "tape",
+        "bottle",
+        "container",
+        "pipe",
+        "machine",
+        "woven",
+        "\\bbox\\b",
+        "fiber",
+        "fibre",
+        "yarn",
+        "strap",
+        "\\bnet\\b",
+        "cabinet",
+        "chair",
+        "crate",
+        "furniture",
+        "tray",
+        "pallet",
+        "mat\b",
+        "toy"
+      ],
+      "im": [
+        "polypropylene-granules",
+        "pp-granules"
+      ],
+      "ti": [
+        "polypropylene-granules",
+        "pp-granules"
+      ]
+    },
+    {
+      "id": "hdpe-granules",
+      "name": "HDPE granules",
+      "chem": "pe",
+      "category": "polymers",
+      "include": [
+        "hdpe",
+        "high density polyethylene"
+      ],
+      "exclude": [
+        "bag",
+        "sheet",
+        "film",
+        "container",
+        "drum",
+        "bottle",
+        "tank",
+        "machine",
+        "fabric",
+        "tarpaulin",
+        "rope",
+        "\\bbox\\b",
+        "\\bnet\\b",
+        "liner",
+        "geomembrane",
+        "hdpe pipes?\\b",
+        "pipes? fitting",
+        "\\bpipes\\b",
+        "cabinet",
+        "chair",
+        "crate",
+        "furniture",
+        "tray",
+        "pallet",
+        "mat\b",
+        "toy"
+      ],
+      "im": [
+        "hdpe-granules"
+      ],
+      "ti": [
+        "hdpe-granules"
+      ]
+    },
+    {
+      "id": "lldpe-granules",
+      "name": "LLDPE / LDPE granules",
+      "chem": "pe",
+      "category": "polymers",
+      "include": [
+        "lldpe",
+        "ldpe",
+        "low density polyethylene"
+      ],
+      "exclude": [
+        "bag",
+        "sheet",
+        "film",
+        "container",
+        "bottle",
+        "tank",
+        "machine",
+        "liner",
+        "roll",
+        "pouch",
+        "hdpe",
+        "pipes?\\b(?!.{0,6}grade)",
+        "cabinet",
+        "chair",
+        "crate",
+        "furniture",
+        "tray",
+        "pallet",
+        "mat\b",
+        "toy"
+      ],
+      "im": [
+        "lldpe-granules",
+        "ldpe-granules",
+        "lldpe",
+        "ldpe"
+      ],
+      "ti": [
+        "lldpe-granules",
+        "ldpe-granules"
+      ]
+    },
+    {
+      "id": "pvc-resin",
+      "name": "PVC resin",
+      "chem": "pvc",
+      "category": "polymers",
+      "include": [
+        "pvc resin",
+        "polyvinyl chloride resin",
+        "pvc suspension",
+        "pvc paste",
+        "pvc powder",
+        "k.?67",
+        "k.?57",
+        "k.?70",
+        "sg5"
+      ],
+      "exclude": [
+        "pipe",
+        "machine",
+        "compound",
+        "granule",
+        "sheet",
+        "film",
+        "door",
+        "panel",
+        "board"
+      ],
+      "im": [
+        "pvc-resin"
+      ],
+      "ti": [
+        "pvc-resin"
+      ]
+    },
+    {
+      "id": "pvc-compound",
+      "name": "PVC compound / granules",
+      "chem": "pvc",
+      "category": "polymers",
+      "include": [
+        "pvc compound",
+        "pvc.{0,20}granul",
+        "pvc dana",
+        "pvc grain"
+      ],
+      "exclude": [
+        "machine",
+        "plant",
+        "pipe",
+        "cable"
+      ],
+      "im": [
+        "pvc-compound",
+        "pvc-granules",
+        "pvc-compounds",
+        "pvc-granule"
+      ],
+      "ti": [
+        "pvc-compound",
+        "pvc-granules"
+      ]
+    },
+    {
+      "id": "epoxy-resin",
+      "name": "Epoxy resin",
+      "chem": "epoxy",
+      "category": "polymers",
+      "density": 1.16,
+      "include": [
+        "epoxy resin",
+        "epoxy"
+      ],
+      "exclude": [
+        "floor",
+        "paint",
+        "grout",
+        "tile",
+        "table",
+        "\\bart\\b",
+        "craft",
+        "kit",
+        "flooring",
+        "putty",
+        "jewel",
+        "river",
+        "coating service"
+      ],
+      "im": [
+        "epoxy-resin",
+        "epoxy-resins",
+        "liquid-epoxy-resin"
+      ],
+      "ti": [
+        "epoxy-resin"
+      ]
+    },
+    {
+      "id": "benzene",
+      "name": "Benzene",
+      "chem": "benzene",
+      "category": "building-blocks",
+      "density": 0.877,
+      "include": [
+        "benzene"
+      ],
+      "exclude": [
+        "alkyl",
+        "sulfon",
+        "sulphon",
+        "chloro",
+        "nitro",
+        "ethyl",
+        "methyl",
+        "free",
+        "hexachloro",
+        "toluene"
+      ],
+      "im": [
+        "benzene"
+      ],
+      "ti": [
+        "benzene"
+      ]
+    },
+    {
+      "id": "meg",
+      "name": "Mono-ethylene glycol (MEG)",
+      "chem": "meg",
+      "category": "building-blocks",
+      "density": 1.113,
+      "include": [
+        "mono ethylene glycol",
+        "monoethylene glycol",
+        "\\bmeg\\b",
+        "ethylene glycol"
+      ],
+      "exclude": [
+        "di.?ethylene",
+        "tri.?ethylene",
+        "poly.?ethylene glycol",
+        "\\bdeg\\b",
+        "\\bpeg\\b",
+        "coolant",
+        "antifreeze",
+        "butyl"
+      ],
+      "im": [
+        "mono-ethylene-glycol",
+        "monoethylene-glycol"
+      ],
+      "ti": [
+        "mono-ethylene-glycol",
+        "monoethylene-glycol"
+      ]
+    },
+    {
+      "id": "pta",
+      "name": "Purified terephthalic acid (PTA)",
+      "chem": "pta",
+      "category": "building-blocks",
+      "include": [
+        "terephthalic",
+        "\\bpta\\b"
+      ],
+      "exclude": [
+        "dimethyl",
+        "chloride",
+        "\\bpet\\b"
+      ],
+      "im": [
+        "purified-terephthalic-acid",
+        "terephthalic-acid"
+      ],
+      "ti": [
+        "purified-terephthalic-acid",
+        "terephthalic-acid"
+      ]
+    },
+    {
+      "id": "styrene",
+      "name": "Styrene monomer",
+      "chem": "styrene",
+      "category": "building-blocks",
+      "density": 0.906,
+      "include": [
+        "styrene"
+      ],
+      "exclude": [
+        "poly",
+        "acrylic",
+        "butadiene",
+        "acrylonitrile",
+        "\\babs\\b",
+        "\\bsbr\\b",
+        "copolymer",
+        "emulsion",
+        "\\beps\\b",
+        "thermocol"
+      ],
+      "im": [
+        "styrene-monomer",
+        "styrene"
+      ],
+      "ti": [
+        "styrene-monomer",
+        "styrene"
+      ]
+    },
+    {
+      "id": "phenol",
+      "name": "Phenol",
+      "chem": "phenol",
+      "category": "building-blocks",
+      "density": 1.07,
+      "include": [
+        "phenol"
+      ],
+      "exclude": [
+        "phthalein",
+        "formaldehyde",
+        "nonyl",
+        "ethoxyl",
+        "phenoxy",
+        "chloro",
+        "nitro",
+        "bisphenol",
+        "phenolic",
+        "sulfon",
+        "sulphon",
+        "amino",
+        "cresol"
+      ],
+      "im": [
+        "phenol",
+        "phenol-chemical",
+        "liquid-phenol",
+        "phenol-liquid"
+      ],
+      "ti": [
+        "phenol"
+      ]
+    },
+    {
+      "id": "caustic-soda-flakes",
+      "name": "Caustic soda flakes / pearls",
+      "chem": "caustic-soda",
+      "category": "specialty",
+      "include": [
+        "caustic soda",
+        "sodium hydroxide",
+        "caustic flake",
+        "caustic pearl"
+      ],
+      "exclude": [
+        "lye",
+        "liquid",
+        "solution",
+        "potash",
+        "potassium"
+      ],
+      "im": [
+        "caustic-soda-flakes",
+        "caustic-soda"
+      ],
+      "ti": [
+        "caustic-soda-flakes",
+        "caustic-soda"
+      ]
+    },
+    {
+      "id": "caustic-soda-lye",
+      "name": "Caustic soda lye",
+      "chem": "caustic-soda",
+      "category": "specialty",
+      "density": 1.5,
+      "include": [
+        "caustic soda lye",
+        "caustic lye",
+        "liquid caustic",
+        "caustic soda liquid",
+        "sodium hydroxide solution",
+        "sodium hydroxide liquid"
+      ],
+      "exclude": [
+        "potash",
+        "potassium"
+      ],
+      "im": [
+        "caustic-soda-lye",
+        "liquid-caustic-soda"
+      ],
+      "ti": [
+        "caustic-soda-lye",
+        "liquid-caustic-soda"
+      ]
+    },
+    {
+      "id": "soda-ash",
+      "name": "Soda ash",
+      "chem": "soda-ash",
+      "category": "specialty",
+      "include": [
+        "soda ash",
+        "sodium carbonate"
+      ],
+      "exclude": [
+        "bicarbonate",
+        "percarbonate",
+        "machine"
+      ],
+      "im": [
+        "soda-ash"
+      ],
+      "ti": [
+        "soda-ash"
+      ]
+    },
+    {
+      "id": "lab",
+      "name": "Linear alkyl benzene (LAB)",
+      "chem": "lab",
+      "category": "specialty",
+      "density": 0.86,
+      "include": [
+        "linear alkyl benzene",
+        "linear alkylbenzene",
+        "\\blab\\b"
+      ],
+      "exclude": [
+        "sulphonic",
+        "sulfonic",
+        "labsa",
+        "laboratory",
+        "equipment",
+        "lab grade",
+        "instrument"
+      ],
+      "im": [
+        "linear-alkyl-benzene"
+      ],
+      "ti": [
+        "linear-alkyl-benzene"
+      ]
+    },
+    {
+      "id": "labsa",
+      "name": "LABSA (acid slurry)",
+      "chem": "surfactants",
+      "category": "specialty",
+      "density": 1.05,
+      "include": [
+        "labsa",
+        "alkyl benzene sulph",
+        "alkyl benzene sulf",
+        "acid slurry",
+        "sulphonic acid"
+      ],
+      "exclude": [
+        "toluene",
+        "methane",
+        "para",
+        "naphthalene",
+        "xylene",
+        "sulphamic",
+        "cumene"
+      ],
+      "im": [
+        "labsa",
+        "linear-alkyl-benzene-sulphonic-acid"
+      ],
+      "ti": [
+        "labsa",
+        "linear-alkyl-benzene-sulphonic-acid"
+      ]
+    },
+    {
+      "id": "sles",
+      "name": "SLES (sodium lauryl ether sulphate)",
+      "chem": "surfactants",
+      "category": "specialty",
+      "density": 1.05,
+      "include": [
+        "\\bsles\\b",
+        "lauryl ether sul",
+        "laureth sul",
+        "lauryl ether sulph"
+      ],
+      "exclude": [
+        "shampoo",
+        "soap",
+        "wash",
+        "detergent powder"
+      ],
+      "im": [
+        "sodium-lauryl-ether-sulphate",
+        "sles",
+        "sles-70"
+      ],
+      "ti": [
+        "sodium-lauryl-ether-sulphate",
+        "sles"
+      ]
+    },
+    {
+      "id": "pac",
+      "name": "Poly aluminium chloride (PAC)",
+      "chem": "pac",
+      "category": "water",
+      "density": 1.2,
+      "include": [
+        "poly aluminium chloride",
+        "polyaluminium chloride",
+        "poly aluminum chloride",
+        "polyaluminum chloride",
+        "\\bpac\\b"
+      ],
+      "exclude": [
+        "machine",
+        "dosing",
+        "pump",
+        "air conditioner",
+        "\\bac\\b"
+      ],
+      "im": [
+        "poly-aluminium-chloride",
+        "poly-aluminium-chloride-powder"
+      ],
+      "ti": [
+        "poly-aluminium-chloride",
+        "poly-aluminium-chloride-powder"
+      ]
+    },
+    {
+      "id": "ferric-chloride",
+      "name": "Ferric chloride",
+      "chem": "ferric-chloride",
+      "category": "water",
+      "density": 1.4,
+      "include": [
+        "ferric chloride",
+        "iron chloride",
+        "iron \\(iii\\) chloride"
+      ],
+      "exclude": [
+        "ferrous",
+        "test",
+        "etching machine"
+      ],
+      "im": [
+        "ferric-chloride"
+      ],
+      "ti": [
+        "ferric-chloride"
+      ]
+    },
+    {
+      "id": "alum",
+      "name": "Aluminium sulphate (alum)",
+      "chem": null,
+      "category": "water",
+      "include": [
+        "aluminium sulphate",
+        "aluminum sulfate",
+        "aluminium sulfate",
+        "\\balum\\b",
+        "ferric alum",
+        "non ferric alum"
+      ],
+      "exclude": [
+        "potash",
+        "potassium",
+        "ammonium",
+        "machine",
+        "stone"
+      ],
+      "im": [
+        "aluminium-sulphate",
+        "alum"
+      ],
+      "ti": [
+        "aluminium-sulphate",
+        "alum"
+      ]
+    },
+    {
+      "id": "citric-acid",
+      "name": "Citric acid",
+      "chem": "citric-acid",
+      "category": "food-feed",
+      "include": [
+        "citric acid"
+      ],
+      "exclude": [
+        "\\btri",
+        "sodium citrate",
+        "potassium citrate",
+        "\\bester",
+        "machine",
+        "\\btest"
+      ],
+      "im": [
+        "citric-acid"
+      ],
+      "ti": [
+        "citric-acid"
+      ]
+    },
+    {
+      "id": "choline-chloride",
+      "name": "Choline chloride",
+      "chem": "choline-chloride",
+      "category": "food-feed",
+      "include": [
+        "choline chloride",
+        "choline"
+      ],
+      "exclude": [
+        "bitartrate",
+        "alfoscerate",
+        "citicoline",
+        "phosphatidyl",
+        "salicylate",
+        "tablet",
+        "capsule",
+        "syrup",
+        "liposom"
+      ],
+      "im": [
+        "choline-chloride"
+      ],
+      "ti": [
+        "choline-chloride"
+      ]
+    },
+    {
+      "id": "glycerine",
+      "name": "Glycerine",
+      "chem": "glycerine",
+      "category": "life-science",
+      "density": 1.261,
+      "include": [
+        "glycerin",
+        "glycerol"
+      ],
+      "exclude": [
+        "mono.?stearate",
+        "\\bgms\\b",
+        "formal",
+        "soap",
+        "ester",
+        "trinitrate",
+        "nitro",
+        "polyglycer",
+        "ricin",
+        "caprylate",
+        "glyceryl",
+        "rose water"
+      ],
+      "im": [
+        "glycerine",
+        "glycerin"
+      ],
+      "ti": [
+        "glycerine",
+        "glycerin"
+      ]
+    },
+    {
+      "id": "propylene-glycol",
+      "name": "Propylene glycol (MPG)",
+      "chem": "propylene-glycol",
+      "category": "life-science",
+      "density": 1.036,
+      "include": [
+        "propylene glycol",
+        "monopropylene glycol",
+        "mono propylene glycol",
+        "\\bmpg\\b",
+        "1,2-propanediol",
+        "\\bpg\\b"
+      ],
+      "exclude": [
+        "di.?propylene",
+        "\\bdpg\\b",
+        "poly.?propylene glycol",
+        "\\bppg\\b",
+        "ether",
+        "alginate",
+        "carbonate",
+        "stearate",
+        "monomethyl",
+        "\\bpeg\\b",
+        "glycerin"
+      ],
+      "im": [
+        "propylene-glycol",
+        "mono-propylene-glycol"
+      ],
+      "ti": [
+        "propylene-glycol",
+        "mono-propylene-glycol"
+      ]
+    },
+    {
+      "id": "urea",
+      "name": "Urea (technical / agricultural)",
+      "chem": "urea",
+      "category": "agro",
+      "include": [
+        "urea"
+      ],
+      "exclude": [
+        "formaldehyde",
+        "resin",
+        "thio",
+        "hydroxy",
+        "peroxide",
+        "biuret",
+        "test",
+        "cream",
+        "machine",
+        "phosphate",
+        "\\bdef\\b",
+        "adblue",
+        "exhaust",
+        "diesel"
+      ],
+      "im": [
+        "urea",
+        "technical-urea"
+      ],
+      "ti": [
+        "urea",
+        "technical-urea"
+      ]
+    },
+    {
+      "id": "2-4-d",
+      "name": "2,4-D herbicide",
+      "chem": "herbicides",
+      "category": "agro",
+      "density": 1.0,
+      "include": [
+        "2,4.?d\\b",
+        "2-4-d",
+        "2 4 d",
+        "dichlorophenoxy"
+      ],
+      "exclude": [],
+      "im": [
+        "2-4-d-herbicide",
+        "2-4-d-amine-salt",
+        "2-4-d"
+      ],
+      "ti": [
+        "2-4-d-herbicide",
+        "2-4-d",
+        "2-4-d-amine-salt",
+        "2-4-d-ethyl-ester"
+      ]
+    },
+    {
+      "id": "glyphosate",
+      "name": "Glyphosate",
+      "chem": "herbicides",
+      "category": "agro",
+      "density": 1.0,
+      "include": [
+        "glyphosate"
+      ],
+      "exclude": [],
+      "im": [
+        "glyphosate",
+        "glyphosate-herbicide"
+      ],
+      "ti": [
+        "glyphosate",
+        "glyphosate-herbicide"
+      ]
+    },
+    {
+      "id": "atrazine",
+      "name": "Atrazine",
+      "chem": "herbicides",
+      "category": "agro",
+      "density": 1.0,
+      "include": [
+        "atrazine"
+      ],
+      "exclude": [],
+      "im": [
+        "atrazine",
+        "atrazine-herbicide"
+      ],
+      "ti": [
+        "atrazine"
+      ]
+    },
+    {
+      "id": "pretilachlor",
+      "name": "Pretilachlor",
+      "chem": "herbicides",
+      "category": "agro",
+      "density": 1.0,
+      "include": [
+        "pretilachlor"
+      ],
+      "exclude": [],
+      "im": [
+        "pretilachlor",
+        "pretilachlor-herbicide"
+      ],
+      "ti": [
+        "pretilachlor"
+      ]
+    },
+    {
+      "id": "chlorpyrifos",
+      "name": "Chlorpyrifos (incl. mixes)",
+      "chem": "insecticides",
+      "category": "agro",
+      "density": 1.0,
+      "include": [
+        "chlorpyrifos",
+        "chlorpyriphos"
+      ],
+      "exclude": [],
+      "im": [
+        "chlorpyrifos",
+        "chlorpyrifos-insecticide"
+      ],
+      "ti": [
+        "chlorpyrifos"
+      ]
+    },
+    {
+      "id": "cypermethrin",
+      "name": "Cypermethrin",
+      "chem": "insecticides",
+      "category": "agro",
+      "density": 1.0,
+      "include": [
+        "cypermethrin"
+      ],
+      "exclude": [],
+      "im": [
+        "cypermethrin",
+        "cypermethrin-insecticide"
+      ],
+      "ti": [
+        "cypermethrin"
+      ]
+    },
+    {
+      "id": "profenofos",
+      "name": "Profenofos",
+      "chem": "insecticides",
+      "category": "agro",
+      "density": 1.0,
+      "include": [
+        "profenofos",
+        "profenophos"
+      ],
+      "exclude": [],
+      "im": [
+        "profenofos",
+        "profenofos-insecticide"
+      ],
+      "ti": [
+        "profenofos"
+      ]
+    },
+    {
+      "id": "imidacloprid",
+      "name": "Imidacloprid",
+      "chem": "insecticides",
+      "category": "agro",
+      "density": 1.0,
+      "include": [
+        "imidacloprid"
+      ],
+      "exclude": [],
+      "im": [
+        "imidacloprid",
+        "imidacloprid-insecticide"
+      ],
+      "ti": [
+        "imidacloprid"
+      ]
+    },
+    {
+      "id": "fipronil",
+      "name": "Fipronil",
+      "chem": "insecticides",
+      "category": "agro",
+      "density": 1.0,
+      "include": [
+        "fipronil"
+      ],
+      "exclude": [],
+      "im": [
+        "fipronil",
+        "fipronil-insecticide"
+      ],
+      "ti": [
+        "fipronil"
+      ]
+    }
+  ]
+}

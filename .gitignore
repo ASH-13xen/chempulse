@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python collector
+.venv/
+__pycache__/
+*.pyc
+data/snapshot/*.tmp
+!.env.example

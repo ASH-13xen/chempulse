@@ -1,0 +1,804 @@
+{
+  "categories": [
+    {
+      "id": "solvents",
+      "name": "Solvents",
+      "slot": 1
+    },
+    {
+      "id": "polymers",
+      "name": "Polymers & resins",
+      "slot": 2
+    },
+    {
+      "id": "building-blocks",
+      "name": "Building blocks",
+      "slot": 3
+    },
+    {
+      "id": "specialty",
+      "name": "Specialty & surfactants",
+      "slot": 4
+    },
+    {
+      "id": "water",
+      "name": "Water treatment",
+      "slot": 5
+    },
+    {
+      "id": "food-feed",
+      "name": "Food & feed",
+      "slot": 6
+    },
+    {
+      "id": "life-science",
+      "name": "Life science & body care",
+      "slot": 7
+    },
+    {
+      "id": "agro",
+      "name": "Agrochemicals",
+      "slot": 8
+    }
+  ],
+  "markets": [
+    {
+      "id": "cn-pp",
+      "name": "Polypropylene futures",
+      "short": "PP",
+      "source": "futures",
+      "symbol": "PP0",
+      "exchange": "Dalian (DCE)",
+      "unit": "CNY/t",
+      "currency": "CNY",
+      "group": "China futures",
+      "about": "Most-traded polypropylene contract in China. Sets the tone for PP prices across Asia."
+    },
+    {
+      "id": "cn-lldpe",
+      "name": "LLDPE futures",
+      "short": "LLDPE",
+      "source": "futures",
+      "symbol": "L0",
+      "exchange": "Dalian (DCE)",
+      "unit": "CNY/t",
+      "currency": "CNY",
+      "group": "China futures",
+      "about": "Linear low-density polyethylene contract. The best free daily guide to polyethylene (PE) prices."
+    },
+    {
+      "id": "cn-pvc",
+      "name": "PVC futures",
+      "short": "PVC",
+      "source": "futures",
+      "symbol": "V0",
+      "exchange": "Dalian (DCE)",
+      "unit": "CNY/t",
+      "currency": "CNY",
+      "group": "China futures",
+      "about": "PVC resin contract. China is the world's largest PVC producer and a key supplier to India."
+    },
+    {
+      "id": "cn-meg",
+      "name": "MEG futures",
+      "short": "MEG",
+      "source": "futures",
+      "symbol": "EG0",
+      "exchange": "Dalian (DCE)",
+      "unit": "CNY/t",
+      "currency": "CNY",
+      "group": "China futures",
+      "about": "Mono-ethylene glycol contract, used for polyester and antifreeze."
+    },
+    {
+      "id": "cn-styrene",
+      "name": "Styrene futures",
+      "short": "SM",
+      "source": "futures",
+      "symbol": "EB0",
+      "exchange": "Dalian (DCE)",
+      "unit": "CNY/t",
+      "currency": "CNY",
+      "group": "China futures",
+      "about": "Styrene monomer contract, used for polystyrene, ABS and resins."
+    },
+    {
+      "id": "cn-benzene",
+      "name": "Pure benzene futures",
+      "short": "BZ",
+      "source": "futures",
+      "symbol": "BZ0",
+      "exchange": "Dalian (DCE)",
+      "unit": "CNY/t",
+      "currency": "CNY",
+      "group": "China futures",
+      "about": "Benzene contract (listed July 2025). Benzene feeds styrene, phenol/acetone, LAB and more."
+    },
+    {
+      "id": "cn-lpg",
+      "name": "LPG futures",
+      "short": "LPG",
+      "source": "futures",
+      "symbol": "PG0",
+      "exchange": "Dalian (DCE)",
+      "unit": "CNY/t",
+      "currency": "CNY",
+      "group": "China futures",
+      "about": "Liquefied petroleum gas contract. A feedstock signal for propylene, IPA and MEK."
+    },
+    {
+      "id": "cn-pta",
+      "name": "PTA futures",
+      "short": "PTA",
+      "source": "futures",
+      "symbol": "TA0",
+      "exchange": "Zhengzhou (ZCE)",
+      "unit": "CNY/t",
+      "currency": "CNY",
+      "group": "China futures",
+      "about": "Purified terephthalic acid contract, the main raw material for polyester."
+    },
+    {
+      "id": "cn-methanol",
+      "name": "Methanol futures",
+      "short": "MA",
+      "source": "futures",
+      "symbol": "MA0",
+      "exchange": "Zhengzhou (ZCE)",
+      "unit": "CNY/t",
+      "currency": "CNY",
+      "group": "China futures",
+      "about": "Methanol contract. China makes most of its methanol from coal."
+    },
+    {
+      "id": "cn-caustic",
+      "name": "Caustic soda futures",
+      "short": "SH",
+      "source": "futures",
+      "symbol": "SH0",
+      "exchange": "Zhengzhou (ZCE)",
+      "unit": "CNY/t",
+      "currency": "CNY",
+      "group": "China futures",
+      "about": "Caustic soda contract (listed Sept 2023)."
+    },
+    {
+      "id": "cn-sodaash",
+      "name": "Soda ash futures",
+      "short": "SA",
+      "source": "futures",
+      "symbol": "SA0",
+      "exchange": "Zhengzhou (ZCE)",
+      "unit": "CNY/t",
+      "currency": "CNY",
+      "group": "China futures",
+      "about": "Soda ash (sodium carbonate) contract, driven by glass and detergent demand."
+    },
+    {
+      "id": "cn-px",
+      "name": "Paraxylene futures",
+      "short": "PX",
+      "source": "futures",
+      "symbol": "PX0",
+      "exchange": "Zhengzhou (ZCE)",
+      "unit": "CNY/t",
+      "currency": "CNY",
+      "group": "China futures",
+      "about": "Paraxylene contract (listed Sept 2023). PX feeds PTA and tracks the aromatics chain including xylene."
+    },
+    {
+      "id": "cn-propylene",
+      "name": "Propylene futures",
+      "short": "PL",
+      "source": "futures",
+      "symbol": "PL0",
+      "exchange": "Zhengzhou (ZCE)",
+      "unit": "CNY/t",
+      "currency": "CNY",
+      "group": "China futures",
+      "about": "Propylene contract (listed July 2025). Propylene feeds PP, acetone/phenol, IPA and propylene glycol."
+    },
+    {
+      "id": "cn-urea",
+      "name": "Urea futures",
+      "short": "UR",
+      "source": "futures",
+      "symbol": "UR0",
+      "exchange": "Zhengzhou (ZCE)",
+      "unit": "CNY/t",
+      "currency": "CNY",
+      "group": "China futures",
+      "about": "Urea fertiliser contract."
+    },
+    {
+      "id": "cn-aluminium",
+      "name": "Aluminium futures",
+      "short": "AL",
+      "source": "futures",
+      "symbol": "AL0",
+      "exchange": "Shanghai (SHFE)",
+      "unit": "CNY/t",
+      "currency": "CNY",
+      "group": "China futures",
+      "about": "Aluminium contract. A cost signal for aluminium-based water treatment chemicals such as PAC."
+    },
+    {
+      "id": "brent",
+      "name": "Brent crude oil",
+      "short": "Brent",
+      "source": "fred",
+      "symbol": "DCOILBRENTEU",
+      "exchange": "FRED / EIA",
+      "unit": "USD/bbl",
+      "currency": "USD",
+      "group": "Energy",
+      "about": "The global oil benchmark. Most petrochemicals follow crude with a lag. Published by FRED a few days late."
+    },
+    {
+      "id": "wti",
+      "name": "WTI crude oil",
+      "short": "WTI",
+      "source": "fred",
+      "symbol": "DCOILWTICO",
+      "exchange": "FRED / EIA",
+      "unit": "USD/bbl",
+      "currency": "USD",
+      "group": "Energy",
+      "about": "US crude oil benchmark."
+    },
+    {
+      "id": "henryhub",
+      "name": "Natural gas (Henry Hub)",
+      "short": "Gas",
+      "source": "fred",
+      "symbol": "DHHNGSP",
+      "exchange": "FRED / EIA",
+      "unit": "USD/MMBtu",
+      "currency": "USD",
+      "group": "Energy",
+      "about": "US natural gas price, a cost signal for methanol, ammonia and urea."
+    },
+    {
+      "id": "propane",
+      "name": "Propane (Mont Belvieu)",
+      "short": "C3",
+      "source": "fred",
+      "symbol": "DPROPANEMBTX",
+      "exchange": "FRED / EIA",
+      "unit": "USD/gal",
+      "currency": "USD",
+      "group": "Energy",
+      "about": "Propane price. Propane is cracked into propylene, the start of the PP/acetone/IPA chain."
+    },
+    {
+      "id": "usdinr",
+      "name": "US dollar to rupee",
+      "short": "USD/INR",
+      "source": "fx",
+      "symbol": "USD",
+      "exchange": "European Central Bank",
+      "unit": "INR per USD",
+      "currency": "INR",
+      "group": "Currency",
+      "about": "A weaker rupee (higher number) makes every imported chemical dearer in rupees."
+    },
+    {
+      "id": "cnyinr",
+      "name": "Chinese yuan to rupee",
+      "short": "CNY/INR",
+      "source": "fx",
+      "symbol": "CNY",
+      "exchange": "European Central Bank",
+      "unit": "INR per CNY",
+      "currency": "INR",
+      "group": "Currency",
+      "about": "Used to convert China prices into rupees."
+    }
+  ],
+  "chemicals": [
+    {
+      "id": "toluene",
+      "name": "Toluene",
+      "short": "TOL",
+      "category": "solvents",
+      "cas": "108-88-3",
+      "hs": [
+        "290230"
+      ],
+      "daily": null,
+      "drivers": [
+        "cn-benzene",
+        "brent"
+      ],
+      "density": 0.867,
+      "news": "toluene",
+      "about": "Aromatic solvent for paints, thinners, adhesives and inks; also a feedstock for benzene and xylenes."
+    },
+    {
+      "id": "xylene",
+      "name": "Xylene (mixed)",
+      "short": "XYL",
+      "category": "solvents",
+      "cas": "1330-20-7",
+      "hs": [
+        "290244"
+      ],
+      "daily": null,
+      "drivers": [
+        "cn-px",
+        "brent"
+      ],
+      "density": 0.864,
+      "news": "xylene",
+      "about": "Solvent for paints, coatings, pesticides and rubber. India imports small, irregular volumes, so the import price can jump."
+    },
+    {
+      "id": "acetone",
+      "name": "Acetone",
+      "short": "ACE",
+      "category": "solvents",
+      "cas": "67-64-1",
+      "hs": [
+        "291411"
+      ],
+      "daily": null,
+      "drivers": [
+        "cn-benzene",
+        "cn-propylene"
+      ],
+      "density": 0.784,
+      "news": "acetone",
+      "about": "Fast-drying solvent and raw material for bisphenol-A, MMA and pharma. Made with phenol from benzene and propylene."
+    },
+    {
+      "id": "ipa",
+      "name": "Isopropyl alcohol (IPA)",
+      "short": "IPA",
+      "category": "solvents",
+      "cas": "67-63-0",
+      "hs": [
+        "290512"
+      ],
+      "hsNote": "The customs group also includes n-propanol; IPA is most of it.",
+      "daily": null,
+      "drivers": [
+        "cn-propylene",
+        "cn-lpg"
+      ],
+      "density": 0.786,
+      "news": "isopropyl alcohol|isopropanol",
+      "about": "Cleaning and disinfecting solvent used in pharma, electronics, inks and coatings."
+    },
+    {
+      "id": "mek",
+      "name": "Methyl ethyl ketone (MEK)",
+      "short": "MEK",
+      "category": "solvents",
+      "cas": "78-93-3",
+      "hs": [
+        "291412"
+      ],
+      "daily": null,
+      "drivers": [
+        "cn-lpg",
+        "brent"
+      ],
+      "density": 0.805,
+      "news": "methyl ethyl ketone",
+      "about": "Solvent for PU and vinyl coatings, adhesives, printing inks and lube-oil dewaxing."
+    },
+    {
+      "id": "methanol",
+      "name": "Methanol",
+      "short": "MEOH",
+      "category": "solvents",
+      "cas": "67-56-1",
+      "hs": [
+        "290511"
+      ],
+      "daily": "cn-methanol",
+      "drivers": [
+        "henryhub",
+        "brent"
+      ],
+      "density": 0.792,
+      "news": "methanol",
+      "about": "Base chemical for formaldehyde, acetic acid and solvents. India imports most of its methanol."
+    },
+    {
+      "id": "ethyl-acetate",
+      "name": "Ethyl acetate",
+      "short": "ETAC",
+      "category": "solvents",
+      "cas": "141-78-6",
+      "hs": [
+        "291531"
+      ],
+      "daily": null,
+      "drivers": [
+        "brent"
+      ],
+      "density": 0.902,
+      "news": "ethyl acetate",
+      "about": "Solvent for flexible-packaging inks, adhesives and pharma. India is mainly an exporter, so import volumes are small."
+    },
+    {
+      "id": "pp",
+      "name": "Polypropylene (PP)",
+      "short": "PP",
+      "category": "polymers",
+      "cas": "9003-07-0",
+      "hs": [
+        "390210"
+      ],
+      "daily": "cn-pp",
+      "drivers": [
+        "cn-propylene",
+        "brent"
+      ],
+      "news": "polypropylene",
+      "about": "Most widely used plastic for woven sacks, packaging, moulded parts and fibres."
+    },
+    {
+      "id": "pe",
+      "name": "Polyethylene (PE)",
+      "short": "PE",
+      "category": "polymers",
+      "cas": "9002-88-4",
+      "hs": [
+        "390110",
+        "390120"
+      ],
+      "hsNote": "Imports add LLDPE/LDPE (below 0.94 density) and HDPE (0.94 and above).",
+      "daily": "cn-lldpe",
+      "drivers": [
+        "brent",
+        "propane"
+      ],
+      "news": "polyethylene|HDPE|LLDPE",
+      "about": "Film, pipes, blow-moulded containers and packaging. Daily signal is China's LLDPE contract."
+    },
+    {
+      "id": "pvc",
+      "name": "PVC resin",
+      "short": "PVC",
+      "category": "polymers",
+      "cas": "9002-86-2",
+      "hs": [
+        "390410"
+      ],
+      "daily": "cn-pvc",
+      "drivers": [
+        "brent"
+      ],
+      "news": "PVC|polyvinyl chloride",
+      "about": "Pipes, fittings, profiles, cables and flooring. India imports a large share of its PVC."
+    },
+    {
+      "id": "epoxy",
+      "name": "Epoxy resin",
+      "short": "EPX",
+      "category": "polymers",
+      "cas": "25068-38-6",
+      "hs": [
+        "390730"
+      ],
+      "daily": null,
+      "drivers": [
+        "cn-benzene",
+        "cn-propylene"
+      ],
+      "news": "epoxy resin|epoxy",
+      "about": "Coatings, adhesives, composites and electrical laminates. Made from bisphenol-A and epichlorohydrin."
+    },
+    {
+      "id": "benzene",
+      "name": "Benzene",
+      "short": "BZ",
+      "category": "building-blocks",
+      "cas": "71-43-2",
+      "hs": [
+        "290220"
+      ],
+      "daily": "cn-benzene",
+      "drivers": [
+        "brent"
+      ],
+      "density": 0.877,
+      "news": "benzene",
+      "about": "Core aromatic feedstock for styrene, phenol, LAB, cyclohexane and more."
+    },
+    {
+      "id": "propylene",
+      "name": "Propylene",
+      "short": "C3=",
+      "category": "building-blocks",
+      "cas": "115-07-1",
+      "hs": [
+        "290122"
+      ],
+      "daily": "cn-propylene",
+      "drivers": [
+        "propane",
+        "brent"
+      ],
+      "news": "propylene",
+      "about": "Feedstock for PP, acetone/phenol, IPA, acrylics and propylene glycol. India imports little; daily signal is China futures."
+    },
+    {
+      "id": "meg",
+      "name": "Mono-ethylene glycol (MEG)",
+      "short": "MEG",
+      "category": "building-blocks",
+      "cas": "107-21-1",
+      "hs": [
+        "290531"
+      ],
+      "daily": "cn-meg",
+      "drivers": [
+        "brent"
+      ],
+      "density": 1.113,
+      "news": "monoethylene glycol|mono ethylene glycol|ethylene glycol|MEG price",
+      "about": "Polyester fibre and PET bottles, coolants and antifreeze."
+    },
+    {
+      "id": "pta",
+      "name": "Purified terephthalic acid (PTA)",
+      "short": "PTA",
+      "category": "building-blocks",
+      "cas": "100-21-0",
+      "hs": [
+        "291736"
+      ],
+      "daily": "cn-pta",
+      "drivers": [
+        "cn-px",
+        "brent"
+      ],
+      "news": "terephthalic|PTA price",
+      "about": "Main raw material for polyester fibre, film and PET resin."
+    },
+    {
+      "id": "styrene",
+      "name": "Styrene monomer",
+      "short": "SM",
+      "category": "building-blocks",
+      "cas": "100-42-5",
+      "hs": [
+        "290250"
+      ],
+      "daily": "cn-styrene",
+      "drivers": [
+        "cn-benzene",
+        "brent"
+      ],
+      "density": 0.906,
+      "news": "styrene",
+      "about": "Polystyrene, ABS, SBR rubber and unsaturated polyester resins."
+    },
+    {
+      "id": "phenol",
+      "name": "Phenol",
+      "short": "PHE",
+      "category": "building-blocks",
+      "cas": "108-95-2",
+      "hs": [
+        "290711"
+      ],
+      "daily": null,
+      "drivers": [
+        "cn-benzene",
+        "cn-propylene"
+      ],
+      "news": "phenol",
+      "about": "Bisphenol-A, phenolic resins (laminates, plywood glue) and pharma. Made alongside acetone."
+    },
+    {
+      "id": "caustic-soda",
+      "name": "Caustic soda",
+      "short": "NaOH",
+      "category": "specialty",
+      "cas": "1310-73-2",
+      "hs": [
+        "281511"
+      ],
+      "hsNote": "Import series is solid caustic (flakes). India is a net exporter, so import volumes are small.",
+      "daily": "cn-caustic",
+      "drivers": [],
+      "news": "caustic soda|chlor-alkali|chlor alkali",
+      "about": "Alumina, textiles, soaps, paper, water treatment and countless chemical processes."
+    },
+    {
+      "id": "soda-ash",
+      "name": "Soda ash",
+      "short": "Na2CO3",
+      "category": "specialty",
+      "cas": "497-19-8",
+      "hs": [
+        "283620"
+      ],
+      "daily": "cn-sodaash",
+      "drivers": [],
+      "news": "soda ash",
+      "about": "Glass, detergents, sodium silicate and chemicals."
+    },
+    {
+      "id": "lab",
+      "name": "Linear alkyl benzene (LAB)",
+      "short": "LAB",
+      "category": "specialty",
+      "cas": "67774-74-7",
+      "hs": [
+        "381700"
+      ],
+      "daily": null,
+      "drivers": [
+        "cn-benzene",
+        "brent"
+      ],
+      "news": "linear alkyl benzene|linear alkylbenzene|LAB price",
+      "about": "Raw material for LABSA, the main active in detergent powders and liquids."
+    },
+    {
+      "id": "surfactants",
+      "name": "Anionic surfactants (incl. SLES)",
+      "short": "SURF",
+      "category": "specialty",
+      "cas": "9004-82-4",
+      "hs": [
+        "340239"
+      ],
+      "hsNote": "Broad customs group: other anionic surfactants, which includes SLES. Treat the price as a group average.",
+      "group": true,
+      "daily": null,
+      "drivers": [
+        "brent"
+      ],
+      "news": "SLES|surfactant|surfactants",
+      "about": "Foaming and cleaning agents for shampoos, detergents and personal care."
+    },
+    {
+      "id": "pac",
+      "name": "Poly aluminium chloride (PAC)",
+      "short": "PAC",
+      "category": "water",
+      "cas": "1327-41-9",
+      "hs": [
+        "282732"
+      ],
+      "hsNote": "Customs group 'chlorides of aluminium'. India makes most PAC locally, so import volumes are small.",
+      "daily": null,
+      "drivers": [
+        "cn-aluminium"
+      ],
+      "news": "poly aluminium chloride|polyaluminium chloride",
+      "about": "Coagulant for drinking-water and effluent treatment, paper and textiles."
+    },
+    {
+      "id": "ferric-chloride",
+      "name": "Ferric chloride",
+      "short": "FeCl3",
+      "category": "water",
+      "cas": "7705-08-0",
+      "hs": [
+        "282739"
+      ],
+      "hsNote": "India has no separate customs code for ferric chloride; it sits in 'other chlorides'. This import price is a broad group average, not a ferric chloride price.",
+      "group": true,
+      "daily": null,
+      "drivers": [],
+      "news": "ferric chloride",
+      "about": "Coagulant for sewage, effluent and drinking-water treatment, and an etchant for circuit boards."
+    },
+    {
+      "id": "citric-acid",
+      "name": "Citric acid",
+      "short": "CIT",
+      "category": "food-feed",
+      "cas": "77-92-9",
+      "hs": [
+        "291814"
+      ],
+      "daily": null,
+      "drivers": [],
+      "news": "citric acid",
+      "about": "Acidulant for beverages and food, plus cleaners and pharma. India imports mostly from China."
+    },
+    {
+      "id": "choline-chloride",
+      "name": "Choline chloride",
+      "short": "CC",
+      "category": "food-feed",
+      "cas": "67-48-1",
+      "hs": [
+        "292310"
+      ],
+      "hsNote": "Customs group 'choline and its salts'. India produces most of its own, so import volumes are tiny and the price is noisy.",
+      "daily": null,
+      "drivers": [],
+      "news": "choline chloride",
+      "about": "Feed additive for poultry and cattle; also used in oilfield chemicals."
+    },
+    {
+      "id": "glycerine",
+      "name": "Glycerine",
+      "short": "GLY",
+      "category": "life-science",
+      "cas": "56-81-5",
+      "hs": [
+        "290545"
+      ],
+      "daily": null,
+      "drivers": [],
+      "density": 1.261,
+      "news": "glycerine|glycerin|glycerol",
+      "about": "Pharma, personal care, food and resins. Supply is tied to biodiesel and soap-making."
+    },
+    {
+      "id": "propylene-glycol",
+      "name": "Propylene glycol (MPG)",
+      "short": "MPG",
+      "category": "life-science",
+      "cas": "57-55-6",
+      "hs": [
+        "290532"
+      ],
+      "daily": null,
+      "drivers": [
+        "cn-propylene"
+      ],
+      "density": 1.036,
+      "news": "propylene glycol",
+      "about": "Pharma and food grades for excipients and flavours; industrial grade for resins and coolants."
+    },
+    {
+      "id": "urea",
+      "name": "Urea",
+      "short": "UREA",
+      "category": "agro",
+      "cas": "57-13-6",
+      "hs": [
+        "310210"
+      ],
+      "daily": "cn-urea",
+      "drivers": [
+        "henryhub"
+      ],
+      "news": "urea",
+      "about": "Main nitrogen fertiliser; also used in resins and DEF (AdBlue). India is a top importer."
+    },
+    {
+      "id": "herbicides",
+      "name": "Herbicides (group)",
+      "short": "HERB",
+      "category": "agro",
+      "cas": "",
+      "hs": [
+        "380893"
+      ],
+      "hsNote": "Product group: all herbicides, anti-sprouting products and plant-growth regulators. Useful for demand trends, not for any single molecule's price.",
+      "group": true,
+      "daily": null,
+      "drivers": [],
+      "news": "herbicide|herbicides|glyphosate",
+      "about": "Imports of weed-control products, a guide to agrochemical demand and seasonality."
+    },
+    {
+      "id": "insecticides",
+      "name": "Insecticides (group)",
+      "short": "INSC",
+      "category": "agro",
+      "cas": "",
+      "hs": [
+        "380891"
+      ],
+      "hsNote": "Product group: all insecticides. Useful for demand trends, not for any single molecule's price.",
+      "group": true,
+      "daily": null,
+      "drivers": [],
+      "news": "insecticide|insecticides|pesticide",
+      "about": "Imports of insect-control products, a guide to agrochemical demand and seasonality."
+    }
+  ]
+}
